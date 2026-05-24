@@ -29,6 +29,8 @@ services:
       - ai_hf_cache:/app/.cache/huggingface
       - ai_torch_cache:/app/.cache/torch
   web:
+
+    
     build: .
     command: npm run dev
     ports:
@@ -49,7 +51,9 @@ services:
       FILE_MASTER_KEY_ID: ${FILE_MASTER_KEY_ID:-master-key-v1}
       MAX_UPLOAD_BYTES: ${MAX_UPLOAD_BYTES:-26214400}
       ALLOWED_MIME: ${ALLOWED_MIME:-application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-word.document.macroEnabled.12,application/vnd.ms-excel.sheet.macroEnabled.12,application/vnd.ms-powerpoint.presentation.macroEnabled.12,application/x-msdownload,text/plain,image/png,image/jpeg,application/octet-stream}
-      RESCAN_ON_DOWNLOAD: ${RESCAN_ON_DOWNLOAD:-false}
+      RESCAN_ON_DOWNLOAD: ${RESCAN_ON_DOWNLOAD:-false};
+      RESEND_API_KEY: "${RESEND_API_KEY}"
+      EMAIL_FROM: "${EMAIL_FROM}"
     depends_on:
       - db
       - ai

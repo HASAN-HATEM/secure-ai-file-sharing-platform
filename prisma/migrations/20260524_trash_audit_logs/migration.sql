@@ -1,0 +1,1 @@
+ALTER TABLE file_objects ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMPTZ;

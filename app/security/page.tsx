@@ -13,6 +13,14 @@ type LogItem = {
   user_id?: number;
 };
 
+function chipClass(action: string): string {
+  const a = action?.toLowerCase() || "";
+  if (a.includes("delete") || a.includes("block") || a.includes("quarantine") || a.includes("fail") || a.includes("malicious")) return "chip chip--danger";
+  if (a.includes("upload") || a.includes("create") || a.includes("share") || a.includes("download") || a.includes("login")) return "chip chip--success";
+  if (a.includes("warn") || a.includes("scan") || a.includes("flag")) return "chip chip--warning";
+  return "chip";
+}
+
 export default function SecurityLogsPage() {
   const [logs, setLogs] = useState<LogItem[]>([]);
   const [error, setError] = useState("");
@@ -25,7 +33,6 @@ export default function SecurityLogsPage() {
         setLogs(body.logs || []);
         return;
       }
-      // fallback to limited activity
       const alt = await fetch("/api/files/list");
       if (alt.ok) {
         const body = await alt.json();
@@ -49,6 +56,7 @@ export default function SecurityLogsPage() {
       <div className="card">
         <div className="card__header">
           <div className="card__title">Activity Log</div>
+          {logs.length > 0 && <span className="status-tag">{logs.length} event{logs.length !== 1 ? "s" : ""}</span>}
         </div>
         <div className="log-list">
           {logs.length === 0 && <div className="empty-state">No activity yet</div>}
@@ -56,14 +64,14 @@ export default function SecurityLogsPage() {
             <div className="log-item" key={log.id}>
               <div className="flex" style={{ justifyContent: "space-between" }}>
                 <div style={{ fontWeight: 700 }}>{log.action?.replace(/_/g, " ")}</div>
-                <div className="chip">info</div>
+                <span className={chipClass(log.action)}>{log.action?.replace(/_/g, " ").split(" ")[0] || "info"}</span>
               </div>
               <div className="log-meta">
-                {log.target_type} #{log.target_id} • User: {log.email || log.user_id || "unknown"}
+                {log.target_type} #{log.target_id} · User: {log.email || log.user_id || "unknown"}
               </div>
               {log.metadata && (
-                <pre style={{ background: "#eef4ff", padding: 10, borderRadius: 12, overflow: "auto" }}>
-                  {typeof log.metadata === "string" ? log.metadata : JSON.stringify(log.metadata)}
+                <pre className="log-pre">
+                  {typeof log.metadata === "string" ? log.metadata : JSON.stringify(log.metadata, null, 2)}
                 </pre>
               )}
               <div className="muted" style={{ textAlign: "right" }}>{new Date(log.timestamp).toLocaleString()}</div>

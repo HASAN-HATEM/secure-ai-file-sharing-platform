@@ -78,17 +78,30 @@ model scan_results {
 }
 
 model users {
-  id               Int                @id @default(autoincrement())
-  name             String
-  email            String             @unique
-  password_hash    String
-  role             String             @default("USER")
-  key_salt         Bytes
-  created_at       DateTime?          @default(now()) @db.Timestamptz(6)
-  audit_logs       audit_logs[]
-  file_permissions file_permissions[]
-  files            files[]
+  id                    Int                     @id @default(autoincrement())
+  name                  String
+  email                 String                  @unique
+  password_hash         String
+  role                  String                  @default("USER")
+  key_salt              Bytes
+  avatar_url            String?
+  created_at            DateTime?               @default(now()) @db.Timestamptz(6)
+  audit_logs            audit_logs[]
+  file_permissions      file_permissions[]
+  files                 files[]
   fileObjectPermissions FileObjectPermission[]
+  password_reset_tokens password_reset_tokens[]
+}
+
+model password_reset_tokens {
+  id         Int       @id @default(autoincrement())
+  user_id    Int
+  token_hash String    @unique
+  expires_at DateTime  @db.Timestamptz(6)
+  used_at    DateTime? @db.Timestamptz(6)
+  ip_address String?
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  users      users     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model FileObject {
@@ -110,6 +123,7 @@ model FileObject {
   encTagBase64       String?          @map("enc_tag_base64")
   encKeyId           String?          @map("enc_key_id")
   encDekBase64       String?          @map("enc_dek_base64")
+  deletedAt          DateTime?        @map("deleted_at") @db.Timestamptz(6)
   createdAt          DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt          DateTime         @updatedAt @map("updated_at") @db.Timestamptz(6)
   scanResults        ScanResult[]

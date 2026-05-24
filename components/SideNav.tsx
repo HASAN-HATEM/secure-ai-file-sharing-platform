@@ -4,6 +4,22 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { signOut } from 'next-auth/react';
 
+function SideAvatar({ user }: { user: { name?: string; avatarUrl?: string | null } | null }) {
+  const [broken, setBroken] = useState(false);
+  const initial = (user?.name || 'U').slice(0, 1).toUpperCase();
+  if (user?.avatarUrl && !broken) {
+    return (
+      <img
+        src={`${user.avatarUrl}?t=${Date.now()}`}
+        alt="Avatar"
+        onError={() => setBroken(true)}
+        style={{ width: 38, height: 38, borderRadius: 12, objectFit: 'cover', flexShrink: 0 }}
+      />
+    );
+  }
+  return <div className="user__avatar">{initial}</div>;
+}
+
 const sections = [
   {
     label: 'Menu',
@@ -12,6 +28,7 @@ const sections = [
       { href: '/upload', label: 'Upload Files', icon: '⤴' },
       { href: '/files', label: 'File Library', icon: '📁' },
       { href: '/shared', label: 'Shared with Me', icon: '🔗' },
+      { href: '/trash', label: 'Trash', icon: '🗑' },
       { href: '/logs', label: 'My Activity', icon: '🧾' }
     ]
   },
@@ -34,7 +51,7 @@ const sections = [
 
 export default function SideNav() {
   const pathname = usePathname();
-  const [user, setUser] = useState<{ name?: string; role?: string } | null>(null);
+  const [user, setUser] = useState<{ name?: string; role?: string; avatarUrl?: string | null } | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -61,7 +78,7 @@ export default function SideNav() {
       </div>
 
       <div className="sidebar__user">
-        <div className="user__avatar">{(user?.name || 'U').slice(0, 1).toUpperCase()}</div>
+        <SideAvatar user={user} />
         <div>
           <div className="user__name">{user?.name || 'User'}</div>
           <div className="user__role">{user?.role || 'User'}</div>

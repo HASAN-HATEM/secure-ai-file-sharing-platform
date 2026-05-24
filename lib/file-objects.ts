@@ -12,6 +12,7 @@ import {
 } from '@/lib/scan-service';
 import type { FiletypeResult } from '@/lib/scan-service';
 import { getAllowedMimeTypes, getMaxUploadBytes, shouldRescanOnDownload } from '@/lib/upload-config';
+import { logAudit } from '@/lib/audit';
 
 function safeFilename(value: string) {
   return value.replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 140) || 'file.bin';
@@ -285,6 +286,12 @@ export async function finalizeUpload(input: {
       }
     });
 
+    logAudit(Number(file.ownerId), 'FILE_UPLOAD', 'file_object', null, {
+      fileId: updated.id,
+      filename: updated.filename,
+      mimeType: updated.mimeType
+    }).catch(() => null);
+
     return {
       ok: true,
       fileId: updated.id,
@@ -322,6 +329,7 @@ export async function listReadyFiles(ownerId: string) {
   const rows = await prisma.fileObject.findMany({
     where: {
       status: toStatus('READY'),
+      deletedAt: null,
       OR: [ { ownerId }, ...(sharedFilter ? [sharedFilter] : []) ]
     },
     orderBy: { createdAt: 'desc' },
@@ -386,7 +394,7 @@ export async function listReadyFiles(ownerId: string) {
 
 export async function findReadyFile(ownerId: string, id: string) {
   return prisma.fileObject.findFirst({
-    where: { id, ownerId, status: toStatus('READY') }
+    where: { id, ownerId, status: toStatus('READY'), deletedAt: null }
   });
 }
 
@@ -404,7 +412,7 @@ export async function shareFileObject(input: {
   }
 
   const secretHash = await bcrypt.hash(input.sharedSecret, 10);
-  return prisma.fileObjectPermission.upsert({
+  const permission = await prisma.fileObjectPermission.upsert({
     where: {
       fileObjectId_recipientUserId: {
         fileObjectId: input.fileId,
@@ -422,6 +430,14 @@ export async function shareFileObject(input: {
       canDownload: true
     }
   });
+
+  logAudit(Number(input.ownerId), 'FILE_SHARE', 'file_object', null, {
+    fileId: input.fileId,
+    filename: file.filename,
+    recipientUserId: input.recipientUserId
+  }).catch(() => null);
+
+  return permission;
 }
 
 export async function findFileForDownload(input: {
@@ -429,7 +445,7 @@ export async function findFileForDownload(input: {
   requesterId: string;
 }) {
   const file = await prisma.fileObject.findFirst({
-    where: { id: input.fileId, status: toStatus('READY') }
+    where: { id: input.fileId, status: toStatus('READY'), deletedAt: null }
   });
   if (!file) return null;
 
@@ -460,18 +476,68 @@ export async function verifySharedSecret(secret: string, secretHash: string) {
 }
 
 export async function deleteFileObject(ownerId: string, id: string) {
-  const record = await prisma.fileObject.findFirst({ where: { id, ownerId } });
-  if (!record) {
-    throw new Error('Not found');
-  }
+  const record = await prisma.fileObject.findFirst({ where: { id, ownerId, deletedAt: null } });
+  if (!record) throw new Error('Not found');
 
-  if (record.storageKey) {
-    await deleteObject(record.storageKey).catch(() => null);
-  }
-  if (record.tempKey) {
-    await deleteObject(record.tempKey).catch(() => null);
-  }
+  await prisma.fileObject.update({
+    where: { id: record.id },
+    data: { deletedAt: new Date() }
+  });
+
+  logAudit(Number(ownerId), 'FILE_DELETE', 'file_object', null, {
+    fileId: id,
+    filename: record.filename
+  }).catch(() => null);
+}
+
+export async function listDeletedFiles(ownerId: string) {
+  const rows = await prisma.fileObject.findMany({
+    where: { ownerId, deletedAt: { not: null } },
+    orderBy: { deletedAt: 'desc' },
+    select: {
+      id: true,
+      filename: true,
+      mimeType: true,
+      sizeBytes: true,
+      deletedAt: true,
+      createdAt: true,
+      categoryLabel: true
+    }
+  });
+  return rows.map(r => ({ ...r, sizeBytes: Number(r.sizeBytes) }));
+}
+
+export async function restoreFileObject(ownerId: string, id: string) {
+  const record = await prisma.fileObject.findFirst({
+    where: { id, ownerId, deletedAt: { not: null } }
+  });
+  if (!record) throw new Error('Not found');
+
+  await prisma.fileObject.update({
+    where: { id: record.id },
+    data: { deletedAt: null }
+  });
+
+  logAudit(Number(ownerId), 'FILE_RESTORE', 'file_object', null, {
+    fileId: id,
+    filename: record.filename
+  }).catch(() => null);
+}
+
+export async function permanentDeleteFileObject(ownerId: string, id: string) {
+  const record = await prisma.fileObject.findFirst({
+    where: { id, ownerId, deletedAt: { not: null } }
+  });
+  if (!record) throw new Error('Not found');
+
+  if (record.storageKey) await deleteObject(record.storageKey).catch(() => null);
+  if (record.tempKey) await deleteObject(record.tempKey).catch(() => null);
   await prisma.fileObject.delete({ where: { id: record.id } });
+
+  logAudit(Number(ownerId), 'FILE_PERMANENT_DELETE', 'file_object', null, {
+    fileId: id,
+    filename: record.filename
+  }).catch(() => null);
 }
 
 export async function maybeRescanOnDownload(content: Buffer) {

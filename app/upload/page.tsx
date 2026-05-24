@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useRef, useState } from "react";
 
 export default function UploadPage() {
@@ -34,14 +35,12 @@ export default function UploadPage() {
     if (!scan) return null;
     const scores = [
       { label: "MalConv score", value: scan.score },
-      { label: "Document threat score", value: scan.document_ai?.score },
-      { label: "Image threat score", value: scan.image_ai?.score },
-      { label: "URL AI malware score", value: scan.url_ai?.max_malware_score, threshold: scan.url_ai?.threshold }
+      { label: "Document threat", value: scan.document_ai?.score },
+      { label: "Image threat", value: scan.image_ai?.score },
+      { label: "URL malware", value: scan.url_ai?.max_malware_score, threshold: scan.url_ai?.threshold }
     ].filter((item) => typeof item.value === "number" && Number.isFinite(item.value) && item.value > 0);
     if (scores.length === 0) return null;
-    const best = scores.reduce((highest, item) => Number(item.value) > Number(highest.value) ? item : highest, scores[0]);
-    const threshold = best.threshold !== undefined ? percent(best.threshold) : null;
-    return `${best.label} ${percent(best.value)}${threshold ? `, block threshold ${threshold}` : ""}`;
+    return scores.reduce((highest, item) => Number(item.value) > Number(highest.value) ? item : highest, scores[0]);
   };
 
   const getHighestUrlResult = (scan: any) => {
@@ -54,8 +53,7 @@ export default function UploadPage() {
     }, results[0]);
   };
 
-  const featureLabel = (label: unknown) =>
-    String(label || "unknown").replace(/_/g, " ");
+  const featureLabel = (label: unknown) => String(label || "unknown").replace(/_/g, " ");
 
   const shouldShowUrlScan = (scan: any) => {
     if (!scan?.url_ai) return false;
@@ -70,14 +68,12 @@ export default function UploadPage() {
     return !(label === "document" && typeof confidence === "number" && confidence <= 0);
   };
 
-
   const getClassificationView = (classification: any) => {
     const filetype = classification?.filetype;
     const imagenet = classification?.imagenet;
     const customConfidence = percent(filetype?.confidence ?? classification?.confidence);
     const rawConfidence = percent(filetype?.confidence);
     const imagenetConfidence = percent(imagenet?.confidence);
-
     return {
       filetype,
       imagenet,
@@ -112,11 +108,7 @@ export default function UploadPage() {
       const createRes = await fetch("/api/uploads/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-        filename: file.name,
-          mimeType: file.type || "application/octet-stream",
-          sizeBytes: file.size
-        })
+        body: JSON.stringify({ filename: file.name, mimeType: file.type || "application/octet-stream", sizeBytes: file.size })
       });
       const createData = await createRes.json();
       if (!createRes.ok) {
@@ -131,10 +123,7 @@ export default function UploadPage() {
       uploadForm.append("fileId", createData.fileId);
       uploadForm.append("tempKey", createData.tempKey);
       uploadForm.append("file", file);
-      const putRes = await fetch("/api/uploads/transfer", {
-        method: "POST",
-        body: uploadForm
-      });
+      const putRes = await fetch("/api/uploads/transfer", { method: "POST", body: uploadForm });
       if (!putRes.ok) {
         setStatus(`Upload to storage failed (${putRes.status})`);
         setCurrentStep(-1);
@@ -156,14 +145,6 @@ export default function UploadPage() {
         return;
       }
 
-      const classificationView = getClassificationView(finalizeData.classification);
-      console.info("Upload AI classification display decision", {
-        customPredictedType: finalizeData.classification?.filetype?.predicted_type ?? finalizeData.classification?.label,
-        customConfidence: finalizeData.classification?.filetype?.confidence ?? finalizeData.classification?.confidence,
-        oldImageNetLabel: finalizeData.classification?.imagenet?.label,
-        oldImageNetConfidence: finalizeData.classification?.imagenet?.confidence,
-        oldImageNetDisplayed: Boolean(finalizeData.classification?.imagenet)
-      });
       setResult(finalizeData);
       setCurrentStep(3);
       setStatus("Completed — file saved to your library");
@@ -176,18 +157,17 @@ export default function UploadPage() {
   const onFilePicked = (file: File | null) => {
     const usableFile = pickUsableFile(file);
     setSelectedFile(usableFile);
-    if (usableFile) {
-      setStatus(`Ready to upload: ${usableFile.name}`);
-      return;
-    }
+    if (usableFile) { setStatus(`Ready to upload: ${usableFile.name}`); return; }
     setStatus("Selected file is empty or unavailable");
   };
 
   const onDrop = (ev: React.DragEvent<HTMLDivElement>) => {
     ev.preventDefault();
-    const file = ev.dataTransfer.files?.[0];
-    onFilePicked(file || null);
+    onFilePicked(ev.dataTransfer.files?.[0] || null);
   };
+
+  const isMalicious = result?.scan?.is_malicious;
+  const isSuccess = currentStep === 3 && !isMalicious;
 
   return (
     <div className="page">
@@ -207,7 +187,6 @@ export default function UploadPage() {
             style={{ display: "none" }}
             onChange={(e) => onFilePicked(e.target.files?.[0] || null)}
           />
-
           <div
             className="dropzone"
             onDragOver={(e) => e.preventDefault()}
@@ -219,14 +198,7 @@ export default function UploadPage() {
               <div className="page-title" style={{ fontSize: 18, margin: 0 }}>Drag &amp; Drop Files Here</div>
               <div className="muted" style={{ marginTop: 4 }}>or click to browse your files</div>
               <div style={{ marginTop: 12 }}>
-                <button
-                  type="button"
-                  className="button"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    inputRef.current?.click();
-                  }}
-                >
+                <button type="button" className="button" onClick={(event) => { event.stopPropagation(); inputRef.current?.click(); }}>
                   Browse Files
                 </button>
               </div>
@@ -261,108 +233,101 @@ export default function UploadPage() {
 
       {result && (
         <div className="card">
-          <h3>Scan & Classification</h3>
-          <p>
-            Malware: {result.scan?.is_malicious ? "Blocked" : "Clean"}
-            {result.scan && getMalwareScoreDisplay(result.scan) ? ` (${getMalwareScoreDisplay(result.scan)})` : ""}
-          </p>
-          {shouldShowUrlScan(result.scan) && (
-            <>
+          {/* Verdict banner */}
+          <div className={`verdict-banner${isMalicious ? " verdict-banner--blocked" : " verdict-banner--clean"}`}>
+            <span className="verdict-banner__icon">{isMalicious ? "🚫" : "✅"}</span>
+            <div>
+              <div className="verdict-banner__title">{isMalicious ? "File Blocked — Threat Detected" : "File Clean — Saved to Library"}</div>
+              <div className="verdict-banner__sub">
+                {isMalicious
+                  ? "This file has been quarantined and will not be stored."
+                  : "No threats found. Your file is encrypted and ready."
+                }
+              </div>
+            </div>
+          </div>
+
+          {/* Scan stat grid */}
+          {result.scan && (
+            <div className="scan-stat-grid">
+              <div className="scan-stat">
+                <div className="scan-stat__label">Malware verdict</div>
+                <div className="scan-stat__value">{isMalicious ? "Blocked" : "Clean"}</div>
+              </div>
               {(() => {
-                const highestUrl = getHighestUrlResult(result.scan);
-                return highestUrl ? (
-                  <p>
-                    Highest URL: {shortenUrl(highestUrl.url)}
-                    {typeof highestUrl.malware_score === "number"
-                      ? ` (${(highestUrl.malware_score * 100).toFixed(1)}% malware)`
-                      : ""}
-                  </p>
+                const best = getMalwareScoreDisplay(result.scan);
+                return best ? (
+                  <div className="scan-stat">
+                    <div className="scan-stat__label">{best.label}</div>
+                    <div className="scan-stat__value">{percent(best.value)}</div>
+                  </div>
                 ) : null;
               })()}
-              <p>
-                URL AI Scan: {result.scan.url_ai.scanned || 0} link{result.scan.url_ai.scanned === 1 ? "" : "s"} scanned
-                {typeof result.scan.url_ai.max_malware_score === "number"
-                  ? ` (highest score ${(result.scan.url_ai.max_malware_score * 100).toFixed(1)}%)`
-                  : ""}
-              </p>
-            </>
-          )}
-          {result.scan?.document_ai && (
-            <>
-              {result.scan.document_ai.is_malicious && (
-                <p>
-                  Document Threat Scan: suspicious
-                  {typeof result.scan.document_ai.score === "number"
-                    ? ` (${(result.scan.document_ai.score * 100).toFixed(1)}%)`
-                    : ""}
-                </p>
+              {shouldShowUrlScan(result.scan) && (
+                <div className="scan-stat">
+                  <div className="scan-stat__label">URLs scanned</div>
+                  <div className="scan-stat__value">{result.scan.url_ai?.scanned || 0}</div>
+                </div>
               )}
-              {Array.isArray(result.scan.document_ai.features) && result.scan.document_ai.features.length > 0 && (
-                <p>
-                  Detected Features: {result.scan.document_ai.features
-                    .map((feature: any) => `${featureLabel(feature.label)}${feature.count ? ` x${feature.count}` : ""}`)
-                    .join(", ")}
-                </p>
+              {result.scan.document_ai?.file_kind && (
+                <div className="scan-stat">
+                  <div className="scan-stat__label">Document type</div>
+                  <div className="scan-stat__value">{String(result.scan.document_ai.file_kind).replace(/_/g, " ")}</div>
+                </div>
               )}
-            </>
+            </div>
           )}
-          {result.scan?.image_ai?.applicable && result.scan.image_ai.is_malicious && (
-            <>
-              <p>
-                Image Threat Scan: suspicious
-                {typeof result.scan.image_ai.score === "number"
-                  ? ` (${(result.scan.image_ai.score * 100).toFixed(1)}%)`
-                  : ""}
-              </p>
-              {Array.isArray(result.scan.image_ai.features) && result.scan.image_ai.features.length > 0 && (
-                <p>
-                  Detected Image Features: {result.scan.image_ai.features
-                    .map((feature: any) => `${featureLabel(feature.label)}${feature.count ? ` x${feature.count}` : ""}`)
-                    .join(", ")}
-                </p>
-              )}
-            </>
+
+          {/* URL and document details */}
+          {shouldShowUrlScan(result.scan) && (() => {
+            const highestUrl = getHighestUrlResult(result.scan);
+            return highestUrl ? (
+              <div className="muted" style={{ fontSize: 13, marginBottom: 12 }}>
+                Highest-risk URL: {shortenUrl(highestUrl.url)}
+                {typeof highestUrl.malware_score === "number" ? ` · ${(highestUrl.malware_score * 100).toFixed(1)}% malware score` : ""}
+              </div>
+            ) : null;
+          })()}
+
+          {result.scan?.document_ai?.is_malicious && Array.isArray(result.scan.document_ai.features) && result.scan.document_ai.features.length > 0 && (
+            <div className="muted" style={{ fontSize: 13, marginBottom: 12 }}>
+              Detected features: {result.scan.document_ai.features.map((f: any) => `${featureLabel(f.label)}${f.count ? ` ×${f.count}` : ""}`).join(", ")}
+            </div>
           )}
-          {result.classification && (
-            <>
-              {(() => {
-                const view = getClassificationView(result.classification);
-                const hasImageFiletype = Boolean(view.filetype);
-                const predictedType =
-                  view.filetype?.predicted_type ||
-                  result.classification.label ||
-                  "unknown";
-                return (
-                  <>
-                    {hasImageFiletype ? (
-                      <>
-                        <p>
-                          File Type: {predictedType}
-                          {predictedType !== "uncertain" && view.customConfidence ? ` (${view.customConfidence})` : ""}
-                        </p>
-                        {view.filetype?.uncertain && (
-                          <p>
-                            Raw prediction: {view.filetype?.raw_predicted_type || "unknown"}
-                            {view.rawConfidence ? ` (${view.rawConfidence})` : ""}
-                          </p>
-                        )}
-                      </>
-                    ) : shouldShowTextCategory(result.classification, hasImageFiletype) ? (
-                      <p>
-                        Text Category: {result.classification.label || "unknown"}
-                        {view.customConfidence ? ` (${view.customConfidence})` : ""}
-                      </p>
-                    ) : null}
-                    {view.imagenet && (
-                      <p>
-                        Detected Content: {view.imagenet.label || "Not available"}
-                        {view.imagenetConfidence ? ` (${view.imagenetConfidence}, ${view.imagenetQuality})` : ""}
-                      </p>
-                    )}
-                  </>
-                );
-              })()}
-            </>
+
+          {/* Classification */}
+          {result.classification && (() => {
+            const view = getClassificationView(result.classification);
+            const hasImageFiletype = Boolean(view.filetype);
+            const predictedType = view.filetype?.predicted_type || result.classification.label || "unknown";
+            return (
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
+                {hasImageFiletype ? (
+                  <span className="badge">
+                    {predictedType}{predictedType !== "uncertain" && view.customConfidence ? ` · ${view.customConfidence}` : ""}
+                  </span>
+                ) : shouldShowTextCategory(result.classification, hasImageFiletype) ? (
+                  <span className="badge">
+                    {result.classification.label || "unknown"}{view.customConfidence ? ` · ${view.customConfidence}` : ""}
+                  </span>
+                ) : null}
+                {view.imagenet && (
+                  <span className="badge">
+                    {view.imagenet.label || "Not available"}{view.imagenetConfidence ? ` · ${view.imagenetConfidence}` : ""}
+                  </span>
+                )}
+              </div>
+            );
+          })()}
+
+          {/* CTA */}
+          {isSuccess && (
+            <div className="button-row" style={{ marginTop: 16 }}>
+              <Link className="button" href="/files">Go to Library →</Link>
+              <button className="button ghost" type="button" onClick={() => { setResult(null); setCurrentStep(-1); setStatus(""); setSelectedFile(null); }}>
+                Upload another
+              </button>
+            </div>
           )}
         </div>
       )}

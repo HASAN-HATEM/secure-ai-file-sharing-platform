@@ -1,4 +1,6 @@
 'use client';
+
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
@@ -23,12 +25,17 @@ export default function RegisterPage() {
         setLoading(false);
         return;
       }
-      const res = await fetch('/api/auth/register', { method: 'POST', credentials: 'include', body: JSON.stringify({ name, email, password }), headers: { 'Content-Type': 'application/json' } });
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        credentials: 'include',
+        body: JSON.stringify({ name, email, password }),
+        headers: { 'Content-Type': 'application/json' }
+      });
       const data = await res.json().catch(() => null);
       if (!res.ok) {
-        setError((data as any)?.error || 'Register failed');
+        setError((data as any)?.error || 'Registration failed');
       } else if (!data) {
-        setError('Register failed: empty response');
+        setError('Registration failed: empty response');
       } else {
         if ((data as any).keySalt) localStorage.setItem('keySalt', (data as any).keySalt);
         const authRes = await signIn('credentials', {
@@ -47,23 +54,75 @@ export default function RegisterPage() {
       }
     } catch (err: any) {
       console.error('Register request failed', err);
-      setError('Register failed: network error');
+      setError('Registration failed: network error');
     } finally {
       setLoading(false);
     }
   };
+
   return (
-    <div className="card" style={{ maxWidth: 420, margin: '0 auto' }}>
-      <h2>Create account</h2>
-      {error && <div style={{ color: 'salmon' }}>{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <input className="input" name="name" placeholder="Name" required />
-        <input className="input" name="email" placeholder="Email" type="email" required />
-        <input className="input" name="password" placeholder="Password" type="password" required />
-        <input className="input" name="confirm" placeholder="Confirm password" type="password" required />
-        <button className="button" type="submit" disabled={loading}>{loading ? 'Creating account...' : 'Register'}</button>
-      </form>
-      <p>Already have an account? <a className="navlink" href="/login">Login</a></p>
-    </div>
+    <section className="login-orbit">
+      <div className="login-orbit__backdrop" aria-hidden="true" />
+
+      <div className="login-orbit__card">
+        <div className="login-orbit__header">
+          <p className="login-kicker">SecureShare — New Account</p>
+          <h1>Create your vault</h1>
+          <p className="login-subtitle">
+            Register to access encrypted file storage with AI-powered threat scanning.
+          </p>
+        </div>
+
+        {error && <div className="login-alert">{error}</div>}
+
+        <form onSubmit={handleSubmit} className="login-form">
+          <input
+            className="input login-input"
+            name="name"
+            placeholder="Full name"
+            autoComplete="name"
+            required
+          />
+          <input
+            className="input login-input"
+            name="email"
+            placeholder="you@secure.local"
+            type="email"
+            autoComplete="email"
+            required
+          />
+          <input
+            className="input login-input"
+            name="password"
+            placeholder="Password"
+            type="password"
+            autoComplete="new-password"
+            required
+          />
+          <input
+            className="input login-input"
+            name="confirm"
+            placeholder="Confirm password"
+            type="password"
+            autoComplete="new-password"
+            required
+          />
+          <button className="button login-cta" type="submit" disabled={loading}>
+            {loading ? 'Creating account…' : 'Create account'}
+          </button>
+        </form>
+
+        <div className="login-links">
+          <Link className="navlink" href="/login">Already have an account?</Link>
+        </div>
+
+        <div className="login-chips-row" aria-hidden="true">
+          <span className="login-chip">E2E Encryption</span>
+          <span className="login-chip">Zero Trust</span>
+          <span className="login-chip">AI Threat Scan</span>
+          <span className="login-chip">Secure Storage</span>
+        </div>
+      </div>
+    </section>
   );
 }

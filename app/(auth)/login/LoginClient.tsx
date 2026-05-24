@@ -91,14 +91,14 @@ export default function LoginClient() {
             Create account
           </Link>
           <Link className="navlink" href="/reset-password">
-            Reset password
+            Forgot password
           </Link>
         </div>
-      </div>
-      <div className="login-orbit__aside" aria-hidden="true">
-        <div className="login-chip">E2E Encryption</div>
-        <div className="login-chip">Zero Trust</div>
-        <div className="login-chip">AI Threat Scan</div>
+        <div className="login-chips-row" aria-hidden="true">
+          <span className="login-chip">E2E Encryption</span>
+          <span className="login-chip">Zero Trust</span>
+          <span className="login-chip">AI Threat Scan</span>
+        </div>
       </div>
     </section>
   );

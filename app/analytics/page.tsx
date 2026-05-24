@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type Distribution = { mime_type: string; count: number };
 
@@ -28,6 +28,11 @@ export default function AnalyticsPage() {
   }, []);
 
   const storageUsedMb = data ? data.totalBytes / 1024 / 1024 : 0;
+
+  const maxCount = useMemo(
+    () => Math.max(1, ...(data?.distribution.map((d) => d.count) ?? [1])),
+    [data]
+  );
 
   return (
     <div className="page">
@@ -74,10 +79,10 @@ export default function AnalyticsPage() {
                 <div key={d.mime_type} style={{ marginBottom: 8 }}>
                   <div className="flex" style={{ justifyContent: "space-between" }}>
                     <span>{d.mime_type || "Other"}</span>
-                    <span className="muted">{d.count} files</span>
+                    <span className="muted">{d.count} file{d.count !== 1 ? "s" : ""}</span>
                   </div>
                   <div className="progress">
-                    <div className="progress__fill" style={{ width: `${Math.min(100, d.count * 20)}%` }} />
+                    <div className="progress__fill" style={{ width: `${Math.round((d.count / maxCount) * 100)}%` }} />
                   </div>
                 </div>
               ))}
@@ -88,20 +93,20 @@ export default function AnalyticsPage() {
                 <div className="card__title">Security Overview</div>
               </div>
               <div className="log-list">
-                <div className="log-item" style={{ background: "#e7f7ec" }}>
+                <div className="log-item log-item--success">
                   <div className="card__title">Clean Files</div>
                   <div className="muted">Files that passed security scan</div>
-                  <div className="stat-card__value" style={{ color: "#1f7a3f" }}>{data.cleanFiles}</div>
+                  <div className="stat-card__value">{data.cleanFiles}</div>
                 </div>
-                <div className="log-item" style={{ background: "#fdeced" }}>
+                <div className="log-item log-item--danger">
                   <div className="card__title">Blocked Files</div>
                   <div className="muted">Malicious files blocked</div>
-                  <div className="stat-card__value" style={{ color: "#c53030" }}>{data.threatsBlocked}</div>
+                  <div className="stat-card__value">{data.threatsBlocked}</div>
                 </div>
-                <div className="log-item" style={{ background: "#fff5e2" }}>
+                <div className="log-item log-item--warning">
                   <div className="card__title">Security Alerts</div>
                   <div className="muted">Suspicious activities detected</div>
-                  <div className="stat-card__value" style={{ color: "#c05621" }}>{Math.max(0, data.threatsBlocked - 0)}</div>
+                  <div className="stat-card__value">{Math.max(0, data.threatsBlocked)}</div>
                 </div>
               </div>
             </div>
