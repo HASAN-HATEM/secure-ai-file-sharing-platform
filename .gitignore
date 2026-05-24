@@ -1,5 +1,39 @@
-node_modules
-# Keep environment variables out of version control
-.env
+# dependencies
+node_modules/
 
-/generated/prisma
+# environment
+.env
+.env.local
+.env.*.local
+
+# Next.js
+.next/
+out/
+*.tsbuildinfo
+
+# Prisma
+/generated/prisma/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Training/data/model artifacts
+training-data/downloads/
+training-data/raw/
+training-data/processed/
+models/*.pt
+models/*.pth
+models/*.h5
+models/*.onnx
+
+# Logs/cache/temp
+UsershassaAppDataRoamingnpm-cache/
+*.log
+tmp-scan-tests/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/

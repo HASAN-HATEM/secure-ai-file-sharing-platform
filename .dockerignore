@@ -9,8 +9,21 @@ coverage
 dist
 build
 *.tsbuildinfo
+
+# Huge datasets/models
+training-data
+models
+
+# Cache/logs
 UsershassaAppDataRoamingnpm-cache
+tmp-scan-tests
+
+# Python
 ai/__pycache__
 ai/**/*.pyc
 ai/.cache
+**/__pycache__
+**/*.pyc
+
+# OS
 **/.DS_Store
