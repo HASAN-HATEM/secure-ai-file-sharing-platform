@@ -1,0 +1,2257 @@
+{
+  "generated_at": "2026-05-23T20:17:04.929103+00:00",
+  "model": "/workspace/models/resnet50_filetype_classifier.pt",
+  "mapping": "/workspace/models/class_mapping.json",
+  "data_dir": "/workspace/training-data/processed/test",
+  "seed": 42,
+  "threshold": 0.6,
+  "samples_per_class": 20,
+  "total_samples": 100,
+  "correct": 96,
+  "incorrect": 2,
+  "uncertain": 2,
+  "accuracy_excluding_uncertain": 0.9795918367346939,
+  "coverage": 0.98,
+  "prediction_counts": {
+    "logo": 21,
+    "screenshot": 21,
+    "document_scan": 19,
+    "photo": 20,
+    "diagram": 17,
+    "uncertain": 2
+  },
+  "per_class": {
+    "logo": {
+      "total": 20,
+      "correct": 20,
+      "incorrect": 0,
+      "uncertain": 0
+    },
+    "screenshot": {
+      "total": 20,
+      "correct": 20,
+      "incorrect": 0,
+      "uncertain": 0
+    },
+    "document_scan": {
+      "total": 20,
+      "correct": 19,
+      "incorrect": 1,
+      "uncertain": 0
+    },
+    "photo": {
+      "total": 20,
+      "correct": 20,
+      "incorrect": 0,
+      "uncertain": 0
+    },
+    "diagram": {
+      "total": 20,
+      "correct": 17,
+      "incorrect": 1,
+      "uncertain": 2
+    }
+  },
+  "predictions": [
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_58jpg_b633774e2a54.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9713441729545593,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9713441729545593
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.028531087562441826
+        },
+        {
+          "class": "document_scan",
+          "confidence": 9.415191016159952e-05
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_17jpg_9b2d641823d9.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9974931478500366,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9974931478500366
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0024380083195865154
+        },
+        {
+          "class": "screenshot",
+          "confidence": 5.0772923714248464e-05
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_11jpg_ecd4cc39baf6.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9973681569099426,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9973681569099426
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0024689368437975645
+        },
+        {
+          "class": "screenshot",
+          "confidence": 8.916865044739097e-05
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_69jpg_5d55fd05d415.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9999915361404419,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9999915361404419
+        },
+        {
+          "class": "diagram",
+          "confidence": 7.445737537636887e-06
+        },
+        {
+          "class": "screenshot",
+          "confidence": 6.05915488449682e-07
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_28jpg_f7c6e7b42004.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9887095093727112,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9887095093727112
+        },
+        {
+          "class": "photo",
+          "confidence": 0.009919952601194382
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0008661338943056762
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_26jpg_a071930996c4.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9999330043792725,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9999330043792725
+        },
+        {
+          "class": "diagram",
+          "confidence": 6.231277075130492e-05
+        },
+        {
+          "class": "document_scan",
+          "confidence": 3.3608023386477726e-06
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_23jpg_e7d437931a2f.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9995800852775574,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9995800852775574
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.00041844285442493856
+        },
+        {
+          "class": "screenshot",
+          "confidence": 9.77254671852279e-07
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_19jpg_7cf2f822d89c.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9977917671203613,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9977917671203613
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.001782602514140308
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.00040444760816171765
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_69jpg_1b51689cf9c7.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9918082356452942,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9918082356452942
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.007986669428646564
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.00013460215996019542
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_16jpg_d8a5a7671dfa.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9995971322059631,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9995971322059631
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.000276328093605116
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.000122783676488325
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_60jpg_413346261a5c.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9999796152114868,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9999796152114868
+        },
+        {
+          "class": "diagram",
+          "confidence": 1.9500783309922554e-05
+        },
+        {
+          "class": "document_scan",
+          "confidence": 6.265527758841927e-07
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_49jpg_b811bf29cfdf.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9999988079071045,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9999988079071045
+        },
+        {
+          "class": "screenshot",
+          "confidence": 1.095085394808848e-06
+        },
+        {
+          "class": "document_scan",
+          "confidence": 1.519135395255944e-07
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_16jpg_337d896ca1ad.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9995750784873962,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9995750784873962
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0003946219803765416
+        },
+        {
+          "class": "document_scan",
+          "confidence": 2.980025965371169e-05
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_53jpg_37326b48e63a.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9999967813491821,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9999967813491821
+        },
+        {
+          "class": "diagram",
+          "confidence": 1.784161213436164e-06
+        },
+        {
+          "class": "screenshot",
+          "confidence": 1.4317420209408738e-06
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_38jpg_add1e43f1420.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9996902942657471,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9996902942657471
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0002299624029546976
+        },
+        {
+          "class": "document_scan",
+          "confidence": 7.346010534092784e-05
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_12jpg_8f16296d428c.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.999579131603241,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.999579131603241
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.00031344167655333877
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.00010701175051508471
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_12jpg_57e9eff559c2.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9999985694885254,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9999985694885254
+        },
+        {
+          "class": "screenshot",
+          "confidence": 8.099771093839081e-07
+        },
+        {
+          "class": "diagram",
+          "confidence": 6.151659022179956e-07
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_16jpg_4c076ba2c8d4.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9999058246612549,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9999058246612549
+        },
+        {
+          "class": "diagram",
+          "confidence": 8.673307456774637e-05
+        },
+        {
+          "class": "document_scan",
+          "confidence": 7.14200768925366e-06
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_23jpg_a9d87e6ca91a.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9998853206634521,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9998853206634521
+        },
+        {
+          "class": "document_scan",
+          "confidence": 9.107046207645908e-05
+        },
+        {
+          "class": "screenshot",
+          "confidence": 1.9844275811919942e-05
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/logo/logo_24jpg_bca74205b68e.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.998381495475769,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.998381495475769
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0015897081466391683
+        },
+        {
+          "class": "document_scan",
+          "confidence": 1.4598433153878432e-05
+        }
+      ],
+      "actual_class": "logo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_11748_404bc231a184.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9973816275596619,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9973816275596619
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.0025820282753556967
+        },
+        {
+          "class": "diagram",
+          "confidence": 3.523211489664391e-05
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_12092_08a309c18e64.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9970297813415527,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9970297813415527
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0029675662517547607
+        },
+        {
+          "class": "document_scan",
+          "confidence": 2.5126423679466825e-06
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_10123_c28a3b00b989.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9918487071990967,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9918487071990967
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.005616025533527136
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0025114731397479773
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_11963_b4c645b27db4.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9751410484313965,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9751410484313965
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.018941089510917664
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.005839315243065357
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_10766_fef188c47e02.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9999988079071045,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9999988079071045
+        },
+        {
+          "class": "diagram",
+          "confidence": 6.267740673138178e-07
+        },
+        {
+          "class": "document_scan",
+          "confidence": 5.504833211489313e-07
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_12502_b1a4ba24a6cf.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9861400127410889,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9861400127410889
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.013812060467898846
+        },
+        {
+          "class": "document_scan",
+          "confidence": 4.184169301879592e-05
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_12257_55c01b17b7f4.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9992398023605347,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9992398023605347
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0007022271165624261
+        },
+        {
+          "class": "document_scan",
+          "confidence": 5.7581648434279487e-05
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_12418_e889c4cad8b8.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9999997615814209,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9999997615814209
+        },
+        {
+          "class": "document_scan",
+          "confidence": 2.3305797469674872e-07
+        },
+        {
+          "class": "diagram",
+          "confidence": 2.371378649002054e-08
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_11864_aba3dfeb007f.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9999302625656128,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9999302625656128
+        },
+        {
+          "class": "document_scan",
+          "confidence": 5.8086938224732876e-05
+        },
+        {
+          "class": "diagram",
+          "confidence": 9.176193998428062e-06
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_1149_dfbac39c6356.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9993183612823486,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9993183612823486
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.00038824640796519816
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0002930629125330597
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_10855_ad0a1282888a.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9999690055847168,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9999690055847168
+        },
+        {
+          "class": "document_scan",
+          "confidence": 1.818687087506987e-05
+        },
+        {
+          "class": "diagram",
+          "confidence": 1.2455125215637963e-05
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_1158_c4c358999b8a.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 1.0,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 1.0
+        },
+        {
+          "class": "document_scan",
+          "confidence": 5.320197615787947e-08
+        },
+        {
+          "class": "diagram",
+          "confidence": 3.944632176455798e-09
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_12022_71491d38e8fc.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9962431192398071,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9962431192398071
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0036369101144373417
+        },
+        {
+          "class": "photo",
+          "confidence": 0.00011990711209364235
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_11083_492895c824f7.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9999058246612549,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9999058246612549
+        },
+        {
+          "class": "diagram",
+          "confidence": 9.37990698730573e-05
+        },
+        {
+          "class": "document_scan",
+          "confidence": 3.4289092809558497e-07
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_12827_ff87775da72a.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9999985694885254,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9999985694885254
+        },
+        {
+          "class": "diagram",
+          "confidence": 1.2852423196818563e-06
+        },
+        {
+          "class": "document_scan",
+          "confidence": 1.216341161125456e-07
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_12973_f36715f3bf29.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9999781847000122,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9999781847000122
+        },
+        {
+          "class": "diagram",
+          "confidence": 1.1101324162154924e-05
+        },
+        {
+          "class": "document_scan",
+          "confidence": 7.642259333806578e-06
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_10028_bc4f0cd1b863.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9999747276306152,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9999747276306152
+        },
+        {
+          "class": "diagram",
+          "confidence": 2.189554288634099e-05
+        },
+        {
+          "class": "document_scan",
+          "confidence": 2.5918352548615076e-06
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_12648_eb68845929a7.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9998571872711182,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9998571872711182
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.00013667573512066156
+        },
+        {
+          "class": "logo",
+          "confidence": 5.725655682908837e-06
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_12808_8a1721f0eee1.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.8907393217086792,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.8907393217086792
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.10779862850904465
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0013169992016628385
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/screenshot/screenshot_10676_cb1b768efd7f.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9997876286506653,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9997876286506653
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.00021243882656563073
+        },
+        {
+          "class": "logo",
+          "confidence": 6.481884806674998e-09
+        }
+      ],
+      "actual_class": "screenshot"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_522730279+-0279_722b9a744115.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9975346326828003,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9975346326828003
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0020242114551365376
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.00043686520075425506
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_2080506246_9616fa2e022b.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9926362037658691,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9926362037658691
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.004278408829122782
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.002449127146974206
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_2064958874_86d73e9c3935.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9999524354934692,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9999524354934692
+        },
+        {
+          "class": "logo",
+          "confidence": 4.230697959428653e-05
+        },
+        {
+          "class": "screenshot",
+          "confidence": 4.373660431156168e-06
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_2045934516_4517_773c5f3f982a.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9999984502792358,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9999984502792358
+        },
+        {
+          "class": "screenshot",
+          "confidence": 1.5434839042427484e-06
+        },
+        {
+          "class": "diagram",
+          "confidence": 3.795660674654755e-08
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_11235021_11235022_30604d3640d1.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9999982118606567,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9999982118606567
+        },
+        {
+          "class": "diagram",
+          "confidence": 1.0182091045862762e-06
+        },
+        {
+          "class": "screenshot",
+          "confidence": 7.094680540831177e-07
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_2028741327_2028741328_d77ee5af9eb2.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9999979734420776,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9999979734420776
+        },
+        {
+          "class": "screenshot",
+          "confidence": 1.6528218793609994e-06
+        },
+        {
+          "class": "diagram",
+          "confidence": 2.5107510737143457e-07
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_85086037_17c04f7dafb3.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9998871088027954,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9998871088027954
+        },
+        {
+          "class": "diagram",
+          "confidence": 6.48296409053728e-05
+        },
+        {
+          "class": "screenshot",
+          "confidence": 2.9418386475299485e-05
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_2063947277_8ce9cc59cdd8.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9993237257003784,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9993237257003784
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.0006537334993481636
+        },
+        {
+          "class": "logo",
+          "confidence": 1.4473988812824246e-05
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_03550753_2061f966abb4.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9999966621398926,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9999966621398926
+        },
+        {
+          "class": "logo",
+          "confidence": 1.822524950512161e-06
+        },
+        {
+          "class": "screenshot",
+          "confidence": 1.010192249850661e-06
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_0071032459_1ee1f01e4fbb.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9952921867370605,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9952921867370605
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.004681409802287817
+        },
+        {
+          "class": "diagram",
+          "confidence": 2.643092921061907e-05
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_2073788894_ede8a5c7ea0a.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9999346733093262,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9999346733093262
+        },
+        {
+          "class": "logo",
+          "confidence": 2.6868405257118866e-05
+        },
+        {
+          "class": "screenshot",
+          "confidence": 2.5549165002303198e-05
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_01788118_01788119_bb31a625281a.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9981972575187683,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9981972575187683
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.0014527402818202972
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0003033184912055731
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_2071675349_61082a4cc421.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9998564720153809,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9998564720153809
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.00011340796481817961
+        },
+        {
+          "class": "screenshot",
+          "confidence": 2.993764792336151e-05
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_ti16352085_586ee797d46e.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9999998807907104,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9999998807907104
+        },
+        {
+          "class": "screenshot",
+          "confidence": 4.14963743367025e-08
+        },
+        {
+          "class": "diagram",
+          "confidence": 3.235299672610381e-08
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_2065330157_072336765589.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9999761581420898,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9999761581420898
+        },
+        {
+          "class": "screenshot",
+          "confidence": 1.8236567484564148e-05
+        },
+        {
+          "class": "diagram",
+          "confidence": 5.614331712422427e-06
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_515244307+-4307_b15ec030bc8d.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.6485510468482971,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.6485510468482971
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.35096320509910583
+        },
+        {
+          "class": "logo",
+          "confidence": 0.00046679330989718437
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_2041954175_4177_cc72733a5b8f.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9997420907020569,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9997420907020569
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.00022960375645197928
+        },
+        {
+          "class": "screenshot",
+          "confidence": 2.4251787181128748e-05
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_92765755_92765756_96c8c8f6b947.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9999971389770508,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9999971389770508
+        },
+        {
+          "class": "diagram",
+          "confidence": 2.721108558034757e-06
+        },
+        {
+          "class": "logo",
+          "confidence": 1.0046583298617406e-07
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_0013001762_d4e918b82b92.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.999997615814209,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.999997615814209
+        },
+        {
+          "class": "screenshot",
+          "confidence": 1.6212393347814213e-06
+        },
+        {
+          "class": "diagram",
+          "confidence": 7.420790666401444e-07
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/document_scan/document_scan_60002724_f2284028d345.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9999845027923584,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9999845027923584
+        },
+        {
+          "class": "logo",
+          "confidence": 7.465002909157192e-06
+        },
+        {
+          "class": "diagram",
+          "confidence": 3.987281161244027e-06
+        }
+      ],
+      "actual_class": "document_scan"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_car_0930_68cc3215b4e6.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9999985694885254,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9999985694885254
+        },
+        {
+          "class": "logo",
+          "confidence": 8.249337497545639e-07
+        },
+        {
+          "class": "screenshot",
+          "confidence": 2.896237276672764e-07
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_cat_0142_44af382093db.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9992533326148987,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9992533326148987
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0004470832063816488
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.00021460535936057568
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_airplane_0433_4db5dce94e02.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9999943971633911,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9999943971633911
+        },
+        {
+          "class": "logo",
+          "confidence": 4.973136128683109e-06
+        },
+        {
+          "class": "screenshot",
+          "confidence": 4.407725100463722e-07
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_car_0603_aff2403517d5.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9999220371246338,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9999220371246338
+        },
+        {
+          "class": "diagram",
+          "confidence": 5.489214527187869e-05
+        },
+        {
+          "class": "logo",
+          "confidence": 1.1250548595853616e-05
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_airplane_0320_bd2da41edf3e.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9999886751174927,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9999886751174927
+        },
+        {
+          "class": "screenshot",
+          "confidence": 7.894993359514046e-06
+        },
+        {
+          "class": "diagram",
+          "confidence": 1.7532677247800166e-06
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_cat_0201_b4ac368a50f6.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.999995231628418,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.999995231628418
+        },
+        {
+          "class": "screenshot",
+          "confidence": 4.364663254818879e-06
+        },
+        {
+          "class": "diagram",
+          "confidence": 4.030588911518862e-07
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_car_0316_dd4879fcca2f.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9999412298202515,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9999412298202515
+        },
+        {
+          "class": "screenshot",
+          "confidence": 5.257062366581522e-05
+        },
+        {
+          "class": "logo",
+          "confidence": 5.385664735513274e-06
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_dog_0248_9c7ffd567bc6.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.999934196472168,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.999934196472168
+        },
+        {
+          "class": "logo",
+          "confidence": 3.038224167539738e-05
+        },
+        {
+          "class": "diagram",
+          "confidence": 2.1730735170422122e-05
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_cat_0405_799f6ae33b36.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9999548196792603,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9999548196792603
+        },
+        {
+          "class": "screenshot",
+          "confidence": 3.5357894375920296e-05
+        },
+        {
+          "class": "logo",
+          "confidence": 8.081374289758969e-06
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_cat_0383_4416ca30eb52.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9995005130767822,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9995005130767822
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.00039747499977238476
+        },
+        {
+          "class": "diagram",
+          "confidence": 9.134849096881226e-05
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_dog_0356_89a44f81eb8d.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9979914426803589,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9979914426803589
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.0012455485993996263
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0005609265062958002
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_car_0519_364913e5e37f.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9999521970748901,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9999521970748901
+        },
+        {
+          "class": "logo",
+          "confidence": 4.261317735654302e-05
+        },
+        {
+          "class": "screenshot",
+          "confidence": 3.2608204492134973e-06
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_cat_0262_ade5122c55b8.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9999468326568604,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9999468326568604
+        },
+        {
+          "class": "logo",
+          "confidence": 3.548468885128386e-05
+        },
+        {
+          "class": "screenshot",
+          "confidence": 9.093870176002383e-06
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_airplane_0640_adb1c3551536.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9999892711639404,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9999892711639404
+        },
+        {
+          "class": "diagram",
+          "confidence": 7.342998742387863e-06
+        },
+        {
+          "class": "logo",
+          "confidence": 2.2993006041360786e-06
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_cat_0711_7dbb1487cc07.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9934589266777039,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9934589266777039
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.005092405714094639
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.001272520050406456
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_airplane_0251_841918e3a59f.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9999954700469971,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9999954700469971
+        },
+        {
+          "class": "logo",
+          "confidence": 2.5752874535101e-06
+        },
+        {
+          "class": "document_scan",
+          "confidence": 8.88365548235015e-07
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_airplane_0184_48453b3fcaa7.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9932342171669006,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9932342171669006
+        },
+        {
+          "class": "logo",
+          "confidence": 0.006524985656142235
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.00011675991117954254
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_cat_0517_6aaa62f2e78f.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9999309778213501,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9999309778213501
+        },
+        {
+          "class": "screenshot",
+          "confidence": 5.454982238006778e-05
+        },
+        {
+          "class": "logo",
+          "confidence": 7.249245300045004e-06
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_car_0036_ac5dca836416.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9999865293502808,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9999865293502808
+        },
+        {
+          "class": "logo",
+          "confidence": 7.155388175306143e-06
+        },
+        {
+          "class": "diagram",
+          "confidence": 4.5064903133607e-06
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/photo/photo_dog_0073_b420d545ef31.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9999575614929199,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9999575614929199
+        },
+        {
+          "class": "diagram",
+          "confidence": 2.6279059966327623e-05
+        },
+        {
+          "class": "screenshot",
+          "confidence": 1.4484496205113828e-05
+        }
+      ],
+      "actual_class": "photo"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_1796_e00dabf42595.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9999018907546997,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9999018907546997
+        },
+        {
+          "class": "screenshot",
+          "confidence": 9.251055598724633e-05
+        },
+        {
+          "class": "document_scan",
+          "confidence": 5.553036771743791e-06
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_1251_1413445c42a3.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9994056224822998,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9994056224822998
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.0005276313167996705
+        },
+        {
+          "class": "photo",
+          "confidence": 3.179872874170542e-05
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_362_f80c1205cd7f.png",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.7328739166259766,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.7328739166259766
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.2590884268283844
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.006306119728833437
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_15_2d20a0fc40fe.png",
+      "predicted_class": "uncertain",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.5141863822937012,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.5141863822937012
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.4856885075569153
+        },
+        {
+          "class": "logo",
+          "confidence": 9.528564260108396e-05
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_365_03f9315b36ff.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.997481644153595,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.997481644153595
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.0025022560730576515
+        },
+        {
+          "class": "document_scan",
+          "confidence": 1.1189714314241428e-05
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_1300_adabac1eabd8.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9951378703117371,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9951378703117371
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0040662456303834915
+        },
+        {
+          "class": "photo",
+          "confidence": 0.0006367542082443833
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_215_8d8c648943d3.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9938880801200867,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9938880801200867
+        },
+        {
+          "class": "photo",
+          "confidence": 0.004100865684449673
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0011449725134298205
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_1778_28e171d13d5f.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9983129501342773,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9983129501342773
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0015829685144126415
+        },
+        {
+          "class": "screenshot",
+          "confidence": 8.574561070417985e-05
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_2401_92c62e4a0d14.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9998815059661865,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9998815059661865
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.00011545390589162707
+        },
+        {
+          "class": "logo",
+          "confidence": 3.036220277863322e-06
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_2903_ea5c2a19e067.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9999216794967651,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9999216794967651
+        },
+        {
+          "class": "logo",
+          "confidence": 6.282804679358378e-05
+        },
+        {
+          "class": "screenshot",
+          "confidence": 1.3988141290610656e-05
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_3581_cada2cf299da.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.8460492491722107,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.8460492491722107
+        },
+        {
+          "class": "logo",
+          "confidence": 0.15299220383167267
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.0009282050305046141
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_209_5106b29ee66b.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9740173816680908,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9740173816680908
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.025734519585967064
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0002477557573001832
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_1470_08a00176028e.png",
+      "predicted_class": "uncertain",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.5411281585693359,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.5411281585693359
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.437102347612381
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.017847096547484398
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_2138_1fca22fb9b04.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9999833106994629,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9999833106994629
+        },
+        {
+          "class": "screenshot",
+          "confidence": 1.4188351087796036e-05
+        },
+        {
+          "class": "document_scan",
+          "confidence": 2.373244797126972e-06
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_2071_8af555a959f7.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9998496770858765,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9998496770858765
+        },
+        {
+          "class": "document_scan",
+          "confidence": 8.025287388591096e-05
+        },
+        {
+          "class": "logo",
+          "confidence": 6.648154521826655e-05
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_1562_5b4bfec4a42c.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9992239475250244,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9992239475250244
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.0006595651502721012
+        },
+        {
+          "class": "logo",
+          "confidence": 6.849852070445195e-05
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_3032_23fa7edd6dcd.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9992088675498962,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9992088675498962
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0007302068406715989
+        },
+        {
+          "class": "screenshot",
+          "confidence": 3.91432004107628e-05
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_1732_8efae110bc9d.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9985527396202087,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9985527396202087
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0010434371652081609
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.00040289631579071283
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_312_4111a2e62f9f.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9992794394493103,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9992794394493103
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.0003701457753777504
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0003476057609077543
+        }
+      ],
+      "actual_class": "diagram"
+    },
+    {
+      "image": "/workspace/training-data/processed/test/diagram/diagram_3079_b2d8562a46c2.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9999997615814209,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9999997615814209
+        },
+        {
+          "class": "screenshot",
+          "confidence": 2.1732321897616202e-07
+        },
+        {
+          "class": "document_scan",
+          "confidence": 5.5165632062426084e-09
+        }
+      ],
+      "actual_class": "diagram"
+    }
+  ]
+}

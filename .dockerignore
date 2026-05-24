@@ -1,0 +1,16 @@
+.git
+.next
+.env
+node_modules
+npm-debug.log*
+Dockerfile
+docker-compose.yml
+coverage
+dist
+build
+*.tsbuildinfo
+UsershassaAppDataRoamingnpm-cache
+ai/__pycache__
+ai/**/*.pyc
+ai/.cache
+**/.DS_Store

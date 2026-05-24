@@ -1,0 +1,6 @@
+__pycache__
+*.pyc
+.cache
+models/*.pt
+models/*.pth
+training-data

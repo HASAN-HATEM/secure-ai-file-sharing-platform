@@ -1,0 +1,10 @@
+downloads/
+dataset_summary.json
+
+raw/**/*
+!raw/**/
+!raw/**/.gitkeep
+
+processed/**/*
+!processed/**/
+!processed/**/.gitkeep

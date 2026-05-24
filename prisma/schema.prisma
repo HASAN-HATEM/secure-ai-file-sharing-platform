@@ -1,0 +1,162 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum FileObjectStatus {
+  PENDING
+  READY
+  QUARANTINED
+  FAILED
+
+  @@map("file_object_status")
+}
+
+model audit_logs {
+  id            Int       @id @default(autoincrement())
+  actor_user_id Int?
+  action        String
+  target_type   String
+  target_id     Int?
+  timestamp     DateTime? @default(now()) @db.Timestamptz(6)
+  details       Json?
+  users         users?    @relation(fields: [actor_user_id], references: [id], onUpdate: NoAction)
+}
+
+model classification_results {
+  id              Int       @id @default(autoincrement())
+  file_id         Int?
+  classifier_type String
+  label           String?
+  confidence      Float?    @db.Real
+  created_at      DateTime? @default(now()) @db.Timestamptz(6)
+  files           files?    @relation(fields: [file_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model file_permissions {
+  id                   Int       @id @default(autoincrement())
+  file_id              Int?
+  user_id              Int?
+  can_download         Boolean?  @default(true)
+  wrapped_key_for_user String?
+  wrap_iv_for_user     String?
+  created_at           DateTime? @default(now()) @db.Timestamptz(6)
+  files                files?    @relation(fields: [file_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users                users?    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([file_id, user_id])
+}
+
+model files {
+  id                     Int                      @id @default(autoincrement())
+  owner_id               Int?
+  filename               String
+  mime_type              String
+  size_bytes             BigInt
+  encrypted_blob         Bytes
+  iv                     String
+  wrap_iv                String
+  wrapped_key            String
+  created_at             DateTime?                @default(now()) @db.Timestamptz(6)
+  classification_results classification_results[]
+  file_permissions       file_permissions[]
+  users                  users?                   @relation(fields: [owner_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  scan_results           scan_results[]
+}
+
+model scan_results {
+  id            Int       @id @default(autoincrement())
+  file_id       Int?
+  is_malicious  Boolean
+  score         Float?    @db.Real
+  model_version String?
+  created_at    DateTime? @default(now()) @db.Timestamptz(6)
+  files         files?    @relation(fields: [file_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model users {
+  id               Int                @id @default(autoincrement())
+  name             String
+  email            String             @unique
+  password_hash    String
+  role             String             @default("USER")
+  key_salt         Bytes
+  created_at       DateTime?          @default(now()) @db.Timestamptz(6)
+  audit_logs       audit_logs[]
+  file_permissions file_permissions[]
+  files            files[]
+  fileObjectPermissions FileObjectPermission[]
+}
+
+model FileObject {
+  id                 String           @id @default(cuid())
+  ownerId            String           @map("owner_id")
+  filename           String
+  mimeType           String           @map("mime_type")
+  sizeBytes          BigInt           @map("size_bytes")
+  tempKey            String?          @map("temp_key")
+  storageKey         String?          @unique @map("storage_key")
+  status             FileObjectStatus @default(PENDING)
+  scanScore          Float?           @map("scan_score")
+  scanIsMalicious    Boolean?         @map("scan_is_malicious")
+  scanModelVersion   String?          @map("scan_model_version")
+  categoryLabel      String?          @map("category_label")
+  categoryConfidence Float?           @map("category_confidence")
+  encAlgo            String?          @map("enc_algo")
+  encIvBase64        String?          @map("enc_iv_base64")
+  encTagBase64       String?          @map("enc_tag_base64")
+  encKeyId           String?          @map("enc_key_id")
+  encDekBase64       String?          @map("enc_dek_base64")
+  createdAt          DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt          DateTime         @updatedAt @map("updated_at") @db.Timestamptz(6)
+  scanResults        ScanResult[]
+  classifications    ClassificationResult[]
+  permissions        FileObjectPermission[]
+
+  @@map("file_objects")
+  @@index([ownerId, status], map: "file_objects_owner_status_idx")
+}
+
+model ScanResult {
+  id           String    @id @default(cuid())
+  fileObjectId String    @map("file_object_id")
+  isMalicious  Boolean   @map("is_malicious")
+  score        Float?
+  modelVersion String?   @map("model_version")
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  fileObject   FileObject @relation(fields: [fileObjectId], references: [id], onDelete: Cascade)
+
+  @@map("scan_results_v2")
+  @@index([fileObjectId], map: "scan_results_v2_file_object_idx")
+}
+
+model ClassificationResult {
+  id            String    @id @default(cuid())
+  fileObjectId  String    @map("file_object_id")
+  classifier    String    @map("classifier")
+  label         String
+  confidence    Float?
+  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  fileObject    FileObject @relation(fields: [fileObjectId], references: [id], onDelete: Cascade)
+
+  @@map("classification_results_v2")
+  @@index([fileObjectId], map: "classification_results_v2_file_object_idx")
+}
+
+model FileObjectPermission {
+  id           String    @id @default(cuid())
+  fileObjectId String    @map("file_object_id")
+  recipientUserId Int    @map("recipient_user_id")
+  secretHash   String    @map("secret_hash")
+  canDownload  Boolean   @default(true) @map("can_download")
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  fileObject   FileObject @relation(fields: [fileObjectId], references: [id], onDelete: Cascade)
+  recipient    users      @relation(fields: [recipientUserId], references: [id], onDelete: Cascade)
+
+  @@map("file_object_permissions")
+  @@unique([fileObjectId, recipientUserId], map: "file_object_permissions_unique")
+  @@index([recipientUserId], map: "file_object_permissions_user_idx")
+}

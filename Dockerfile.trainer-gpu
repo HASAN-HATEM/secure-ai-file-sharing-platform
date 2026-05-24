@@ -1,0 +1,5 @@
+FROM pytorch/pytorch:2.2.2-cuda12.1-cudnn8-runtime
+
+WORKDIR /workspace
+
+CMD ["python", "scripts/train_resnet50_filetype_classifier.py", "--epochs", "10", "--batch-size", "16", "--seed", "42"]

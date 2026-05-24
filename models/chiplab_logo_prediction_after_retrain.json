@@ -1,0 +1,31 @@
+{
+  "model": "/workspace/models/resnet50_filetype_classifier.pt",
+  "mapping": "/workspace/models/class_mapping.json",
+  "threshold": 0.6,
+  "total": 1,
+  "predicted": 1,
+  "skipped": [],
+  "predictions": [
+    {
+      "image": "training-data/eval/chiplab_logo.png",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.8856008648872375,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.8856008648872375
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.10574949532747269
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.008642987348139286
+        }
+      ]
+    }
+  ]
+}

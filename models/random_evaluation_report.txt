@@ -1,0 +1,122 @@
+Random File-Type Classifier Evaluation
+Generated: 2026-05-23T20:17:04.929103+00:00
+Model: /workspace/models/resnet50_filetype_classifier.pt
+Data: /workspace/training-data/processed/test
+Seed: 42
+Threshold: 0.6
+
+Total samples: 100
+Correct: 96
+Incorrect: 2
+Uncertain: 2
+Accuracy excluding uncertain: 0.9796
+Coverage: 0.9800
+
+Per-class:
+  logo: total=20 correct=20 incorrect=0 uncertain=0
+  screenshot: total=20 correct=20 incorrect=0 uncertain=0
+  document_scan: total=20 correct=19 incorrect=1 uncertain=0
+  photo: total=20 correct=20 incorrect=0 uncertain=0
+  diagram: total=20 correct=17 incorrect=1 uncertain=2
+
+Predictions:
+  actual=logo predicted=logo raw=logo confidence=0.9713 image=/workspace/training-data/processed/test/logo/logo_58jpg_b633774e2a54.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9975 image=/workspace/training-data/processed/test/logo/logo_17jpg_9b2d641823d9.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9974 image=/workspace/training-data/processed/test/logo/logo_11jpg_ecd4cc39baf6.jpg
+  actual=logo predicted=logo raw=logo confidence=1.0000 image=/workspace/training-data/processed/test/logo/logo_69jpg_5d55fd05d415.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9887 image=/workspace/training-data/processed/test/logo/logo_28jpg_f7c6e7b42004.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9999 image=/workspace/training-data/processed/test/logo/logo_26jpg_a071930996c4.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9996 image=/workspace/training-data/processed/test/logo/logo_23jpg_e7d437931a2f.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9978 image=/workspace/training-data/processed/test/logo/logo_19jpg_7cf2f822d89c.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9918 image=/workspace/training-data/processed/test/logo/logo_69jpg_1b51689cf9c7.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9996 image=/workspace/training-data/processed/test/logo/logo_16jpg_d8a5a7671dfa.jpg
+  actual=logo predicted=logo raw=logo confidence=1.0000 image=/workspace/training-data/processed/test/logo/logo_60jpg_413346261a5c.jpg
+  actual=logo predicted=logo raw=logo confidence=1.0000 image=/workspace/training-data/processed/test/logo/logo_49jpg_b811bf29cfdf.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9996 image=/workspace/training-data/processed/test/logo/logo_16jpg_337d896ca1ad.jpg
+  actual=logo predicted=logo raw=logo confidence=1.0000 image=/workspace/training-data/processed/test/logo/logo_53jpg_37326b48e63a.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9997 image=/workspace/training-data/processed/test/logo/logo_38jpg_add1e43f1420.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9996 image=/workspace/training-data/processed/test/logo/logo_12jpg_8f16296d428c.jpg
+  actual=logo predicted=logo raw=logo confidence=1.0000 image=/workspace/training-data/processed/test/logo/logo_12jpg_57e9eff559c2.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9999 image=/workspace/training-data/processed/test/logo/logo_16jpg_4c076ba2c8d4.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9999 image=/workspace/training-data/processed/test/logo/logo_23jpg_a9d87e6ca91a.jpg
+  actual=logo predicted=logo raw=logo confidence=0.9984 image=/workspace/training-data/processed/test/logo/logo_24jpg_bca74205b68e.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=0.9974 image=/workspace/training-data/processed/test/screenshot/screenshot_11748_404bc231a184.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=0.9970 image=/workspace/training-data/processed/test/screenshot/screenshot_12092_08a309c18e64.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=0.9918 image=/workspace/training-data/processed/test/screenshot/screenshot_10123_c28a3b00b989.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=0.9751 image=/workspace/training-data/processed/test/screenshot/screenshot_11963_b4c645b27db4.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=1.0000 image=/workspace/training-data/processed/test/screenshot/screenshot_10766_fef188c47e02.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=0.9861 image=/workspace/training-data/processed/test/screenshot/screenshot_12502_b1a4ba24a6cf.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=0.9992 image=/workspace/training-data/processed/test/screenshot/screenshot_12257_55c01b17b7f4.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=1.0000 image=/workspace/training-data/processed/test/screenshot/screenshot_12418_e889c4cad8b8.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=0.9999 image=/workspace/training-data/processed/test/screenshot/screenshot_11864_aba3dfeb007f.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=0.9993 image=/workspace/training-data/processed/test/screenshot/screenshot_1149_dfbac39c6356.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=1.0000 image=/workspace/training-data/processed/test/screenshot/screenshot_10855_ad0a1282888a.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=1.0000 image=/workspace/training-data/processed/test/screenshot/screenshot_1158_c4c358999b8a.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=0.9962 image=/workspace/training-data/processed/test/screenshot/screenshot_12022_71491d38e8fc.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=0.9999 image=/workspace/training-data/processed/test/screenshot/screenshot_11083_492895c824f7.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=1.0000 image=/workspace/training-data/processed/test/screenshot/screenshot_12827_ff87775da72a.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=1.0000 image=/workspace/training-data/processed/test/screenshot/screenshot_12973_f36715f3bf29.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=1.0000 image=/workspace/training-data/processed/test/screenshot/screenshot_10028_bc4f0cd1b863.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=0.9999 image=/workspace/training-data/processed/test/screenshot/screenshot_12648_eb68845929a7.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=0.8907 image=/workspace/training-data/processed/test/screenshot/screenshot_12808_8a1721f0eee1.jpg
+  actual=screenshot predicted=screenshot raw=screenshot confidence=0.9998 image=/workspace/training-data/processed/test/screenshot/screenshot_10676_cb1b768efd7f.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=0.9975 image=/workspace/training-data/processed/test/document_scan/document_scan_522730279+-0279_722b9a744115.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=0.9926 image=/workspace/training-data/processed/test/document_scan/document_scan_2080506246_9616fa2e022b.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=1.0000 image=/workspace/training-data/processed/test/document_scan/document_scan_2064958874_86d73e9c3935.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=1.0000 image=/workspace/training-data/processed/test/document_scan/document_scan_2045934516_4517_773c5f3f982a.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=1.0000 image=/workspace/training-data/processed/test/document_scan/document_scan_11235021_11235022_30604d3640d1.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=1.0000 image=/workspace/training-data/processed/test/document_scan/document_scan_2028741327_2028741328_d77ee5af9eb2.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=0.9999 image=/workspace/training-data/processed/test/document_scan/document_scan_85086037_17c04f7dafb3.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=0.9993 image=/workspace/training-data/processed/test/document_scan/document_scan_2063947277_8ce9cc59cdd8.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=1.0000 image=/workspace/training-data/processed/test/document_scan/document_scan_03550753_2061f966abb4.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=0.9953 image=/workspace/training-data/processed/test/document_scan/document_scan_0071032459_1ee1f01e4fbb.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=0.9999 image=/workspace/training-data/processed/test/document_scan/document_scan_2073788894_ede8a5c7ea0a.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=0.9982 image=/workspace/training-data/processed/test/document_scan/document_scan_01788118_01788119_bb31a625281a.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=0.9999 image=/workspace/training-data/processed/test/document_scan/document_scan_2071675349_61082a4cc421.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=1.0000 image=/workspace/training-data/processed/test/document_scan/document_scan_ti16352085_586ee797d46e.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=1.0000 image=/workspace/training-data/processed/test/document_scan/document_scan_2065330157_072336765589.jpg
+  actual=document_scan predicted=screenshot raw=screenshot confidence=0.6486 image=/workspace/training-data/processed/test/document_scan/document_scan_515244307+-4307_b15ec030bc8d.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=0.9997 image=/workspace/training-data/processed/test/document_scan/document_scan_2041954175_4177_cc72733a5b8f.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=1.0000 image=/workspace/training-data/processed/test/document_scan/document_scan_92765755_92765756_96c8c8f6b947.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=1.0000 image=/workspace/training-data/processed/test/document_scan/document_scan_0013001762_d4e918b82b92.jpg
+  actual=document_scan predicted=document_scan raw=document_scan confidence=1.0000 image=/workspace/training-data/processed/test/document_scan/document_scan_60002724_f2284028d345.jpg
+  actual=photo predicted=photo raw=photo confidence=1.0000 image=/workspace/training-data/processed/test/photo/photo_car_0930_68cc3215b4e6.jpg
+  actual=photo predicted=photo raw=photo confidence=0.9993 image=/workspace/training-data/processed/test/photo/photo_cat_0142_44af382093db.jpg
+  actual=photo predicted=photo raw=photo confidence=1.0000 image=/workspace/training-data/processed/test/photo/photo_airplane_0433_4db5dce94e02.jpg
+  actual=photo predicted=photo raw=photo confidence=0.9999 image=/workspace/training-data/processed/test/photo/photo_car_0603_aff2403517d5.jpg
+  actual=photo predicted=photo raw=photo confidence=1.0000 image=/workspace/training-data/processed/test/photo/photo_airplane_0320_bd2da41edf3e.jpg
+  actual=photo predicted=photo raw=photo confidence=1.0000 image=/workspace/training-data/processed/test/photo/photo_cat_0201_b4ac368a50f6.jpg
+  actual=photo predicted=photo raw=photo confidence=0.9999 image=/workspace/training-data/processed/test/photo/photo_car_0316_dd4879fcca2f.jpg
+  actual=photo predicted=photo raw=photo confidence=0.9999 image=/workspace/training-data/processed/test/photo/photo_dog_0248_9c7ffd567bc6.jpg
+  actual=photo predicted=photo raw=photo confidence=1.0000 image=/workspace/training-data/processed/test/photo/photo_cat_0405_799f6ae33b36.jpg
+  actual=photo predicted=photo raw=photo confidence=0.9995 image=/workspace/training-data/processed/test/photo/photo_cat_0383_4416ca30eb52.jpg
+  actual=photo predicted=photo raw=photo confidence=0.9980 image=/workspace/training-data/processed/test/photo/photo_dog_0356_89a44f81eb8d.jpg
+  actual=photo predicted=photo raw=photo confidence=1.0000 image=/workspace/training-data/processed/test/photo/photo_car_0519_364913e5e37f.jpg
+  actual=photo predicted=photo raw=photo confidence=0.9999 image=/workspace/training-data/processed/test/photo/photo_cat_0262_ade5122c55b8.jpg
+  actual=photo predicted=photo raw=photo confidence=1.0000 image=/workspace/training-data/processed/test/photo/photo_airplane_0640_adb1c3551536.jpg
+  actual=photo predicted=photo raw=photo confidence=0.9935 image=/workspace/training-data/processed/test/photo/photo_cat_0711_7dbb1487cc07.jpg
+  actual=photo predicted=photo raw=photo confidence=1.0000 image=/workspace/training-data/processed/test/photo/photo_airplane_0251_841918e3a59f.jpg
+  actual=photo predicted=photo raw=photo confidence=0.9932 image=/workspace/training-data/processed/test/photo/photo_airplane_0184_48453b3fcaa7.jpg
+  actual=photo predicted=photo raw=photo confidence=0.9999 image=/workspace/training-data/processed/test/photo/photo_cat_0517_6aaa62f2e78f.jpg
+  actual=photo predicted=photo raw=photo confidence=1.0000 image=/workspace/training-data/processed/test/photo/photo_car_0036_ac5dca836416.jpg
+  actual=photo predicted=photo raw=photo confidence=1.0000 image=/workspace/training-data/processed/test/photo/photo_dog_0073_b420d545ef31.jpg
+  actual=diagram predicted=diagram raw=diagram confidence=0.9999 image=/workspace/training-data/processed/test/diagram/diagram_1796_e00dabf42595.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.9994 image=/workspace/training-data/processed/test/diagram/diagram_1251_1413445c42a3.png
+  actual=diagram predicted=logo raw=logo confidence=0.7329 image=/workspace/training-data/processed/test/diagram/diagram_362_f80c1205cd7f.png
+  actual=diagram predicted=uncertain raw=screenshot confidence=0.5142 image=/workspace/training-data/processed/test/diagram/diagram_15_2d20a0fc40fe.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.9975 image=/workspace/training-data/processed/test/diagram/diagram_365_03f9315b36ff.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.9951 image=/workspace/training-data/processed/test/diagram/diagram_1300_adabac1eabd8.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.9939 image=/workspace/training-data/processed/test/diagram/diagram_215_8d8c648943d3.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.9983 image=/workspace/training-data/processed/test/diagram/diagram_1778_28e171d13d5f.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.9999 image=/workspace/training-data/processed/test/diagram/diagram_2401_92c62e4a0d14.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.9999 image=/workspace/training-data/processed/test/diagram/diagram_2903_ea5c2a19e067.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.8460 image=/workspace/training-data/processed/test/diagram/diagram_3581_cada2cf299da.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.9740 image=/workspace/training-data/processed/test/diagram/diagram_209_5106b29ee66b.png
+  actual=diagram predicted=uncertain raw=diagram confidence=0.5411 image=/workspace/training-data/processed/test/diagram/diagram_1470_08a00176028e.png
+  actual=diagram predicted=diagram raw=diagram confidence=1.0000 image=/workspace/training-data/processed/test/diagram/diagram_2138_1fca22fb9b04.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.9998 image=/workspace/training-data/processed/test/diagram/diagram_2071_8af555a959f7.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.9992 image=/workspace/training-data/processed/test/diagram/diagram_1562_5b4bfec4a42c.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.9992 image=/workspace/training-data/processed/test/diagram/diagram_3032_23fa7edd6dcd.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.9986 image=/workspace/training-data/processed/test/diagram/diagram_1732_8efae110bc9d.png
+  actual=diagram predicted=diagram raw=diagram confidence=0.9993 image=/workspace/training-data/processed/test/diagram/diagram_312_4111a2e62f9f.png
+  actual=diagram predicted=diagram raw=diagram confidence=1.0000 image=/workspace/training-data/processed/test/diagram/diagram_3079_b2d8562a46c2.png

@@ -1,0 +1,1610 @@
+{
+  "model": "/app/models/resnet50_filetype_classifier.pt",
+  "mapping": "/app/models/class_mapping.json",
+  "threshold": 0.6,
+  "total": 81,
+  "predicted": 75,
+  "skipped": [
+    {
+      "image": "/app/training-data/processed/test/.gitkeep",
+      "error": "cannot identify image file '/app/training-data/processed/test/.gitkeep'"
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/.gitkeep",
+      "error": "cannot identify image file '/app/training-data/processed/test/diagram/.gitkeep'"
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/.gitkeep",
+      "error": "cannot identify image file '/app/training-data/processed/test/document_scan/.gitkeep'"
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/.gitkeep",
+      "error": "cannot identify image file '/app/training-data/processed/test/logo/.gitkeep'"
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/.gitkeep",
+      "error": "cannot identify image file '/app/training-data/processed/test/photo/.gitkeep'"
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/.gitkeep",
+      "error": "cannot identify image file '/app/training-data/processed/test/screenshot/.gitkeep'"
+    }
+  ],
+  "predictions": [
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1000_8a5e9e758a06.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.7764259576797485,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.7764259576797485
+        },
+        {
+          "class": "logo",
+          "confidence": 0.16528163850307465
+        },
+        {
+          "class": "photo",
+          "confidence": 0.024541636928915977
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1003_d0bd3192b4be.png",
+      "predicted_class": "uncertain",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.5258846879005432,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.5258846879005432
+        },
+        {
+          "class": "logo",
+          "confidence": 0.26821887493133545
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.09890083223581314
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1008_4a401f4bb3c2.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.6498432159423828,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.6498432159423828
+        },
+        {
+          "class": "logo",
+          "confidence": 0.19712486863136292
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.12127894908189774
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1012_48459da5d071.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9834182858467102,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9834182858467102
+        },
+        {
+          "class": "logo",
+          "confidence": 0.008260108530521393
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.004019810818135738
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1016_c3a68faa5eca.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9755864143371582,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9755864143371582
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.015715723857283592
+        },
+        {
+          "class": "logo",
+          "confidence": 0.006249009631574154
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1017_2f110689ed10.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9496117234230042,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9496117234230042
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.03338925540447235
+        },
+        {
+          "class": "logo",
+          "confidence": 0.011187804862856865
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1042_1bf06fb693b2.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9192962050437927,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9192962050437927
+        },
+        {
+          "class": "logo",
+          "confidence": 0.053447362035512924
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.0183323472738266
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1049_b633683f0efc.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9296478033065796,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9296478033065796
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0591655969619751
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.010303995572030544
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1062_2e794c2fa192.png",
+      "predicted_class": "uncertain",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.5218125581741333,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.5218125581741333
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.3544572591781616
+        },
+        {
+          "class": "logo",
+          "confidence": 0.08529123663902283
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1063_0d1974a7eccc.png",
+      "predicted_class": "uncertain",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.3962755501270294,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.3962755501270294
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.34016090631484985
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.22352218627929688
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1064_ae52b98f41de.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9809471964836121,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9809471964836121
+        },
+        {
+          "class": "logo",
+          "confidence": 0.010131649672985077
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.005744126159697771
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1067_1a96babfb5ff.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.9738641977310181,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.9738641977310181
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.021562866866588593
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.0027758805081248283
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_107_8100e27c40dc.png",
+      "predicted_class": "uncertain",
+      "raw_predicted_class": "logo",
+      "confidence": 0.5164147019386292,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.5164147019386292
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.38824906945228577
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.07093007862567902
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1081_cee5ee65814c.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.6608455181121826,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.6608455181121826
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.2639176547527313
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.06528199464082718
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/diagram/diagram_1_a7a18eab74d3.png",
+      "predicted_class": "diagram",
+      "raw_predicted_class": "diagram",
+      "confidence": 0.8877967596054077,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "diagram",
+          "confidence": 0.8877967596054077
+        },
+        {
+          "class": "logo",
+          "confidence": 0.06119637191295624
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.04079394415020943
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_0000126151_d42baafeaa7c.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9206305742263794,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9206305742263794
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.06636341661214828
+        },
+        {
+          "class": "logo",
+          "confidence": 0.006549503188580275
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_0000158166_0fc5b211ece2.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9966004490852356,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9966004490852356
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.0012799793621525168
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0012052409583702683
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_0000549243_15d170ce527c.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9584556221961975,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9584556221961975
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.037362679839134216
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0026691185776144266
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_0030049534_290f6fb30380.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9692991971969604,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9692991971969604
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.01777884177863598
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.007476995699107647
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_1002761222_c6f46730d850.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9750044941902161,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9750044941902161
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.014226089231669903
+        },
+        {
+          "class": "logo",
+          "confidence": 0.00785524956882
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_1002761265_53fdae23860b.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9532682299613953,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9532682299613953
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.02238025702536106
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.012025779113173485
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_1002916715_621851e0717c.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.7201014757156372,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.7201014757156372
+        },
+        {
+          "class": "logo",
+          "confidence": 0.13201114535331726
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.08767834305763245
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_2023855337_8d8b1f73e230.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9700053334236145,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9700053334236145
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.018734144046902657
+        },
+        {
+          "class": "logo",
+          "confidence": 0.006272355560213327
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_2042240155_b4f553edee2e.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9209975600242615,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9209975600242615
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.04226866364479065
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.01640981249511242
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_2042360806_1a4e5241d702.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9832274913787842,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9832274913787842
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.010587857104837894
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.004940164741128683
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_2047134900_d17107dc648d.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9617397785186768,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9617397785186768
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.022125592455267906
+        },
+        {
+          "class": "logo",
+          "confidence": 0.00933119561523199
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_2058500085_dcfac55651f1.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.7972585558891296,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.7972585558891296
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0947791263461113
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.08440341800451279
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_2058502006_896d4667287d.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.9281746745109558,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.9281746745109558
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.024121077731251717
+        },
+        {
+          "class": "logo",
+          "confidence": 0.02228030189871788
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_2061010900_cbc8bf676ca9.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.8692432045936584,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.8692432045936584
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.06075768172740936
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.04612017050385475
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/document_scan/document_scan_2061190073_5314c710f760.jpg",
+      "predicted_class": "document_scan",
+      "raw_predicted_class": "document_scan",
+      "confidence": 0.7640587091445923,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "document_scan",
+          "confidence": 0.7640587091445923
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.12235409021377563
+        },
+        {
+          "class": "logo",
+          "confidence": 0.09615601599216461
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_12jpg_9b95c94b0c68.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.8068187832832336,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.8068187832832336
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.14008907973766327
+        },
+        {
+          "class": "photo",
+          "confidence": 0.03108527511358261
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_12jpg_dec3a90df7e8.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9788727760314941,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9788727760314941
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.014044093899428844
+        },
+        {
+          "class": "photo",
+          "confidence": 0.0034652177710086107
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_16jpg_463b4364a216.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.970949113368988,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.970949113368988
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.020082760602235794
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.00674606254324317
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_19jpg_ba21a4d5256f.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.7436290383338928,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.7436290383338928
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.12553191184997559
+        },
+        {
+          "class": "photo",
+          "confidence": 0.06350314617156982
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_1jpg_086e2c56953e.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.905414879322052,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.905414879322052
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.04353530704975128
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.027991339564323425
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_20jpg_8b01ec47d2f3.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.980186402797699,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.980186402797699
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.011682122014462948
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.005927981808781624
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_27jpg_f9c946651b6e.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9506523609161377,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9506523609161377
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.037212107330560684
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.00704118050634861
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_28jpg_c5ba0d1b635e.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.8240973353385925,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.8240973353385925
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.1247020959854126
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.039658959954977036
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_31jpg_5f794a178e19.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9886073470115662,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9886073470115662
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.006034460850059986
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.0026053523179143667
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_41jpg_7b295952695e.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9681876301765442,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9681876301765442
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.01814424991607666
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.006629691459238529
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_54jpg_0a247ddf1d77.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9140322804450989,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9140322804450989
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.04401303827762604
+        },
+        {
+          "class": "photo",
+          "confidence": 0.020305367186665535
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_58jpg_87502fe4e2bc.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.8834438920021057,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.8834438920021057
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.06546732783317566
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.04306797683238983
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_64jpg_f6f04d6b40da.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.975330650806427,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.975330650806427
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.01995803229510784
+        },
+        {
+          "class": "photo",
+          "confidence": 0.002491809194907546
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_68jpg_9f4fc74de153.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9936331510543823,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9936331510543823
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0022356819827109575
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.0018338972004130483
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/logo/logo_7jpg_bec81d79f404.jpg",
+      "predicted_class": "logo",
+      "raw_predicted_class": "logo",
+      "confidence": 0.9779833555221558,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "logo",
+          "confidence": 0.9779833555221558
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.01836702972650528
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.0016137524507939816
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0006_f344cf474190.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9850881695747375,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9850881695747375
+        },
+        {
+          "class": "logo",
+          "confidence": 0.007551304996013641
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.005462507251650095
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0007_3c2880bee65c.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9354474544525146,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9354474544525146
+        },
+        {
+          "class": "logo",
+          "confidence": 0.03534368798136711
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.013048002496361732
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0008_5c3d997cee8a.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9376558661460876,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9376558661460876
+        },
+        {
+          "class": "logo",
+          "confidence": 0.019529243931174278
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.01735878922045231
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0010_a4d37b993691.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9610390663146973,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9610390663146973
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.011416180059313774
+        },
+        {
+          "class": "logo",
+          "confidence": 0.010468006134033203
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0020_ccfe15ca98da.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9882360100746155,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9882360100746155
+        },
+        {
+          "class": "logo",
+          "confidence": 0.005499923601746559
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.003587334416806698
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0023_07d1a0a8f01c.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9767146110534668,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9767146110534668
+        },
+        {
+          "class": "logo",
+          "confidence": 0.01861915923655033
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.002601209795102477
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0040_b4d3e56ee481.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.8144144415855408,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.8144144415855408
+        },
+        {
+          "class": "logo",
+          "confidence": 0.1333293467760086
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.031367227435112
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0061_f45332932abf.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9482560753822327,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9482560753822327
+        },
+        {
+          "class": "logo",
+          "confidence": 0.037433795630931854
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.006928662769496441
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0064_d10883a69382.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9808839559555054,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9808839559555054
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.00792831089347601
+        },
+        {
+          "class": "logo",
+          "confidence": 0.005674351938068867
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0065_7039482061d6.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9755398631095886,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9755398631095886
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.011839625425636768
+        },
+        {
+          "class": "logo",
+          "confidence": 0.005135387182235718
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0067_d821f9c8cb49.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.980610728263855,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.980610728263855
+        },
+        {
+          "class": "logo",
+          "confidence": 0.012522511184215546
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.00335011282004416
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0074_c682bde8615f.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9521710872650146,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9521710872650146
+        },
+        {
+          "class": "logo",
+          "confidence": 0.030158737674355507
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.008011935278773308
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0076_2f1ec2f518bc.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.8832381963729858,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.8832381963729858
+        },
+        {
+          "class": "screenshot",
+          "confidence": 0.05734316632151604
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.03145083785057068
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0095_69cb8b94a899.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9780930280685425,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9780930280685425
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.008291931822896004
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0064348443411290646
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/photo/photo_airplane_0097_f385230e33e6.jpg",
+      "predicted_class": "photo",
+      "raw_predicted_class": "photo",
+      "confidence": 0.9800906777381897,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "photo",
+          "confidence": 0.9800906777381897
+        },
+        {
+          "class": "logo",
+          "confidence": 0.006657621823251247
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.005053120199590921
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_10019_bb408e4afa07.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.7667219042778015,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.7667219042778015
+        },
+        {
+          "class": "photo",
+          "confidence": 0.17158278822898865
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.029905494302511215
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_1001_da028c3b8a6d.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.8347783088684082,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.8347783088684082
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.14691029489040375
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.010481019504368305
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_10028_bc4f0cd1b863.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9809611439704895,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9809611439704895
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.008722626604139805
+        },
+        {
+          "class": "photo",
+          "confidence": 0.004494397435337305
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_10031_31e9072268a0.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.8629052042961121,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.8629052042961121
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.11251770704984665
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.01472545973956585
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_10033_34264494a8ff.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9851869940757751,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9851869940757751
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.007957163266837597
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0031370834913104773
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_1003_7ea9dac9cf80.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9267194867134094,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9267194867134094
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.03530016168951988
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.022032832726836205
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_1004_17f4b6d79fab.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.8500245213508606,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.8500245213508606
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.09090733528137207
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.031561028212308884
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_10057_5d3a409b1974.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.8829934000968933,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.8829934000968933
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.09021442383527756
+        },
+        {
+          "class": "logo",
+          "confidence": 0.02272074855864048
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_10061_4bc1718f6b99.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.88750821352005,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.88750821352005
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.05084064230322838
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.024014510214328766
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_10069_3b8dc064537f.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9598466753959656,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9598466753959656
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.023796169087290764
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.010616431012749672
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_1006_c94810883035.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9644250869750977,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9644250869750977
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.021256856620311737
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0071734534576535225
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_10079_ee9533712e3a.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9669294357299805,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9669294357299805
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.02278764173388481
+        },
+        {
+          "class": "logo",
+          "confidence": 0.0054049440659582615
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_1007_83bd92337da2.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9377346038818359,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9377346038818359
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.045351091772317886
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.01135230902582407
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_10087_c32c7541ac3c.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.841608464717865,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.841608464717865
+        },
+        {
+          "class": "document_scan",
+          "confidence": 0.11897160112857819
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.025361616164445877
+        }
+      ]
+    },
+    {
+      "image": "/app/training-data/processed/test/screenshot/screenshot_1_4c42a6029c08.jpg",
+      "predicted_class": "screenshot",
+      "raw_predicted_class": "screenshot",
+      "confidence": 0.9905040860176086,
+      "threshold": 0.6,
+      "top_predictions": [
+        {
+          "class": "screenshot",
+          "confidence": 0.9905040860176086
+        },
+        {
+          "class": "logo",
+          "confidence": 0.005101206712424755
+        },
+        {
+          "class": "diagram",
+          "confidence": 0.0016607313882559538
+        }
+      ]
+    }
+  ]
+}

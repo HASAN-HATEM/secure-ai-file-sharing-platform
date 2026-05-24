@@ -1,0 +1,156 @@
+{
+  "generated_at": "2026-05-23T19:19:10.599608+00:00",
+  "seed": 42,
+  "ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "totals": {
+    "train": 10500,
+    "val": 2250,
+    "test": 2250
+  },
+  "classes": {
+    "logo": {
+      "source": "training-data\\raw\\logo",
+      "source_exists": true,
+      "valid_images": 3000,
+      "invalid_images": 0,
+      "splits": {
+        "train": 2100,
+        "val": 450,
+        "test": 450
+      },
+      "examples": {
+        "train": [
+          "training-data\\processed\\train\\logo\\logo_73jpg_1d65ba72ca28.jpg",
+          "training-data\\processed\\train\\logo\\logo_34jpg_e89c70242055.jpg",
+          "training-data\\processed\\train\\logo\\logo_83jpg_1d0c4d85334e.jpg"
+        ],
+        "val": [
+          "training-data\\processed\\val\\logo\\logo_57jpg_6a50fea50752.jpg",
+          "training-data\\processed\\val\\logo\\logo_62jpg_715c56739e3b.jpg",
+          "training-data\\processed\\val\\logo\\logo_25jpg_96ead5374eee.jpg"
+        ],
+        "test": [
+          "training-data\\processed\\test\\logo\\logo_23jpg_98f9c5766032.jpg",
+          "training-data\\processed\\test\\logo\\logo_84jpg_d87d87742b9f.jpg",
+          "training-data\\processed\\test\\logo\\logo_31jpg_33ed362b853f.jpg"
+        ]
+      }
+    },
+    "screenshot": {
+      "source": "training-data\\raw\\screenshot",
+      "source_exists": true,
+      "valid_images": 3000,
+      "invalid_images": 0,
+      "splits": {
+        "train": 2100,
+        "val": 450,
+        "test": 450
+      },
+      "examples": {
+        "train": [
+          "training-data\\processed\\train\\screenshot\\screenshot_11452_d1c7cea3fafc.jpg",
+          "training-data\\processed\\train\\screenshot\\screenshot_10771_de4aed0836cd.jpg",
+          "training-data\\processed\\train\\screenshot\\screenshot_10430_2d6d603125b9.jpg"
+        ],
+        "val": [
+          "training-data\\processed\\val\\screenshot\\screenshot_11374_4468ecd502cb.jpg",
+          "training-data\\processed\\val\\screenshot\\screenshot_12574_7c6e3fa15b99.jpg",
+          "training-data\\processed\\val\\screenshot\\screenshot_10823_8b4f09cff01d.jpg"
+        ],
+        "test": [
+          "training-data\\processed\\test\\screenshot\\screenshot_11363_ecefc60a656a.jpg",
+          "training-data\\processed\\test\\screenshot\\screenshot_11139_1a9e7389cfbe.jpg",
+          "training-data\\processed\\test\\screenshot\\screenshot_11304_c4154406134f.jpg"
+        ]
+      }
+    },
+    "document_scan": {
+      "source": "training-data\\raw\\document_scan",
+      "source_exists": true,
+      "valid_images": 3000,
+      "invalid_images": 0,
+      "splits": {
+        "train": 2100,
+        "val": 450,
+        "test": 450
+      },
+      "examples": {
+        "train": [
+          "training-data\\processed\\train\\document_scan\\document_scan_2505287858_7e02ff039fad.jpg",
+          "training-data\\processed\\train\\document_scan\\document_scan_2024948748_c819d918630e.jpg",
+          "training-data\\processed\\train\\document_scan\\document_scan_50020207_2fa1703d1e77.jpg"
+        ],
+        "val": [
+          "training-data\\processed\\val\\document_scan\\document_scan_502983761_cd3957c642e8.jpg",
+          "training-data\\processed\\val\\document_scan\\document_scan_515888016+-8018_24d8e685a1c0.jpg",
+          "training-data\\processed\\val\\document_scan\\document_scan_502526100_b42c63576e87.jpg"
+        ],
+        "test": [
+          "training-data\\processed\\test\\document_scan\\document_scan_2078439651_c2357959729a.jpg",
+          "training-data\\processed\\test\\document_scan\\document_scan_2077986647a_0facef454014.jpg",
+          "training-data\\processed\\test\\document_scan\\document_scan_82919524_023c1e83bb48.jpg"
+        ]
+      }
+    },
+    "photo": {
+      "source": "training-data\\raw\\photo",
+      "source_exists": true,
+      "valid_images": 3000,
+      "invalid_images": 0,
+      "splits": {
+        "train": 2100,
+        "val": 450,
+        "test": 450
+      },
+      "examples": {
+        "train": [
+          "training-data\\processed\\train\\photo\\photo_airplane_0028_51fd5d499e21.jpg",
+          "training-data\\processed\\train\\photo\\photo_cat_0869_9981c1a494f3.jpg",
+          "training-data\\processed\\train\\photo\\photo_cat_0657_c569c73a52b4.jpg"
+        ],
+        "val": [
+          "training-data\\processed\\val\\photo\\photo_car_0322_e104ed81991c.jpg",
+          "training-data\\processed\\val\\photo\\photo_cat_0390_8ee035ed01bb.jpg",
+          "training-data\\processed\\val\\photo\\photo_dog_0157_7e46a00fb4b9.jpg"
+        ],
+        "test": [
+          "training-data\\processed\\test\\photo\\photo_cat_0144_1d7d82b87bdc.jpg",
+          "training-data\\processed\\test\\photo\\photo_airplane_0510_10e966a0f9c1.jpg",
+          "training-data\\processed\\test\\photo\\photo_dog_0328_adfbd434d4d5.jpg"
+        ]
+      }
+    },
+    "diagram": {
+      "source": "training-data\\raw\\diagram",
+      "source_exists": true,
+      "valid_images": 3000,
+      "invalid_images": 0,
+      "splits": {
+        "train": 2100,
+        "val": 450,
+        "test": 450
+      },
+      "examples": {
+        "train": [
+          "training-data\\processed\\train\\diagram\\diagram_1717_ff09eb888bf8.png",
+          "training-data\\processed\\train\\diagram\\diagram_3654_8784d58f65a6.png",
+          "training-data\\processed\\train\\diagram\\diagram_1416_a10f69ab4cbd.png"
+        ],
+        "val": [
+          "training-data\\processed\\val\\diagram\\diagram_1196_ddecc7e7a32b.png",
+          "training-data\\processed\\val\\diagram\\diagram_222_dc536c47a142.png",
+          "training-data\\processed\\val\\diagram\\diagram_2873_16ddbcb9f8bc.png"
+        ],
+        "test": [
+          "training-data\\processed\\test\\diagram\\diagram_1704_745f849d9d16.png",
+          "training-data\\processed\\test\\diagram\\diagram_1774_ff6ad49091b5.png",
+          "training-data\\processed\\test\\diagram\\diagram_2283_527e7e84b151.png"
+        ]
+      }
+    }
+  }
+}

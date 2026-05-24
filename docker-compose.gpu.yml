@@ -1,0 +1,37 @@
+services:
+  ai:
+    build:
+      context: .
+      dockerfile: ai/Dockerfile.cuda
+    gpus: all
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+
+  trainer-gpu:
+    profiles:
+      - training-gpu
+    build:
+      context: .
+      dockerfile: Dockerfile.trainer-gpu
+    working_dir: /workspace
+    gpus: all
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+      HF_HOME: /workspace/.cache/huggingface
+      TORCH_HOME: /workspace/.cache/torch
+    volumes:
+      - .:/workspace
+      - ai_hf_cache:/workspace/.cache/huggingface
+      - ai_torch_cache:/workspace/.cache/torch
+    entrypoint:
+      - python
+    command:
+      - scripts/train_resnet50_filetype_classifier.py
+      - --epochs
+      - "10"
+      - --batch-size
+      - "16"
+      - --seed
+      - "42"
