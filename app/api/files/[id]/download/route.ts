@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Readable } from 'stream';
 import { resolveOwnerId } from '@/lib/request-user';
-import { findFileForDownload, maybeRescanOnDownload, verifySharedSecret } from '@/lib/file-objects';
+import { findFileForDownload, maybeRescanOnDownload } from '@/lib/file-objects';
 import { getObjectBuffer } from '@/lib/r2';
 import { decryptFromStorage } from '@/lib/storage-crypto';
 
@@ -21,16 +21,6 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     return NextResponse.json({ error: 'File storage key is missing' }, { status: 500 });
   }
 
-  if (!access.isOwner) {
-    const secret = req.nextUrl.searchParams.get('secret') || req.headers.get('x-shared-secret') || '';
-    if (!secret) {
-      return NextResponse.json({ error: 'Secret is required for shared downloads' }, { status: 403 });
-    }
-    const ok = await verifySharedSecret(secret, access.permission.secretHash);
-    if (!ok) {
-      return NextResponse.json({ error: 'Invalid shared secret' }, { status: 403 });
-    }
-  }
 
   if (!file.encAlgo || !file.encIvBase64 || !file.encTagBase64 || !file.encDekBase64) {
     return NextResponse.json({ error: 'File encryption metadata is incomplete' }, { status: 500 });

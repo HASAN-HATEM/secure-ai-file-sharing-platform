@@ -51,7 +51,7 @@ const sections = [
 
 export default function SideNav() {
   const pathname = usePathname();
-  const [user, setUser] = useState<{ name?: string; role?: string; avatarUrl?: string | null } | null>(null);
+  const [user, setUser] = useState<{ name?: string; role?: string; avatarUrl?: string | null; utmEmail?: string | null } | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -59,7 +59,8 @@ export default function SideNav() {
         const res = await fetch('/api/auth/me', { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
-          setUser(data.user || null);
+          const u = data.user || null;
+          setUser(u ? { name: u.name, role: u.role, avatarUrl: u.avatarUrl, utmEmail: u.utmEmail ?? null } : null);
         }
       } catch {
         // ignore fetch errors
@@ -70,7 +71,7 @@ export default function SideNav() {
   return (
     <aside className="sidebar">
       <div className="sidebar__brand">
-        <div className="brand__mark">S</div>
+        <img src="/logo.png" alt="SecureShare" className="brand__mark" />
         <div>
           <div className="brand__name">SecureShare</div>
           <div className="brand__sub">Secure file sharing</div>
@@ -82,6 +83,11 @@ export default function SideNav() {
         <div>
           <div className="user__name">{user?.name || 'User'}</div>
           <div className="user__role">{user?.role || 'User'}</div>
+          {user?.utmEmail && (
+            <div style={{ fontSize: 11, color: '#16a34a', fontWeight: 700, marginTop: 2, letterSpacing: 0.3 }}>
+              UTM Verified ✓
+            </div>
+          )}
         </div>
       </div>
 

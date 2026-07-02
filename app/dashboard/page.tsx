@@ -55,13 +55,16 @@ function IconClock() {
 export default function DashboardPage() {
   const [files, setFiles] = useState<any[]>([]);
   const [activity, setActivity] = useState<any[]>([]);
-  const [user, setUser] = useState<{ name?: string } | null>(null);
+  const [user, setUser] = useState<{ name?: string; emailVerified?: boolean } | null>(null);
+  const [verifiedParam, setVerifiedParam] = useState<string | null>(null);
+  const [plan, setPlan] = useState<{ currentKey: string; packages: { key: string; name: string; storageLimitBytes: number }[]; usedBytes: number } | null>(null);
 
   useEffect(() => {
     (async () => {
-      const [filesRes, userRes] = await Promise.all([
+      const [filesRes, userRes, planRes] = await Promise.all([
         fetch('/api/files/list'),
         fetch('/api/auth/me', { cache: 'no-store' }),
+        fetch('/api/account/plan', { cache: 'no-store' }),
       ]);
       if (filesRes.ok) {
         const data = await filesRes.json();
@@ -70,13 +73,26 @@ export default function DashboardPage() {
       }
       if (userRes.ok) {
         const data = await userRes.json();
-        setUser(data.user || null);
+        setUser(data.user ? { name: data.user.name, emailVerified: data.user.emailVerified } : null);
+      }
+      setVerifiedParam(new URLSearchParams(window.location.search).get('verified'));
+      if (planRes.ok) {
+        const data = await planRes.json();
+        setPlan(data);
       }
     })();
   }, []);
 
-  const totalBytes = useMemo(() => files.reduce((s, f) => s + Number(f.size_bytes || 0), 0), [files]);
-  const storageLimitBytes = 100 * 1024 * 1024;
+  const currentPackage = useMemo(() => {
+    if (!plan) return null;
+    return plan.packages.find((p) => p.key === plan.currentKey) || plan.packages[0] || null;
+  }, [plan]);
+
+  const totalBytes = plan?.usedBytes ?? 0;
+  const storageLimitBytes = currentPackage?.storageLimitBytes ?? 1024 * 1024 * 1024;
+  const storageLimitLabel = storageLimitBytes >= 1024 * 1024 * 1024
+    ? `${(storageLimitBytes / 1024 / 1024 / 1024).toFixed(0)} GB`
+    : `${(storageLimitBytes / 1024 / 1024).toFixed(0)} MB`;
   const storagePercent = Math.min(100, Math.round((totalBytes / storageLimitBytes) * 100));
   const storageUsedMb = (totalBytes / 1024 / 1024) || 0;
   const remainingMb = Math.max(0, storageLimitBytes / 1024 / 1024 - storageUsedMb);
@@ -120,6 +136,26 @@ export default function DashboardPage() {
         <p className="muted">Here&apos;s an overview of your secure vault.</p>
       </div>
 
+      {verifiedParam === '1' && (
+        <div className="status-tag" style={{ marginBottom: 16 }}>
+          Email verified — your account is fully activated.
+        </div>
+      )}
+      {verifiedParam === 'invalid' && (
+        <div className="status-tag tag-danger" style={{ marginBottom: 16 }}>
+          Verification link invalid or expired. Go to Settings to resend.
+        </div>
+      )}
+      {user && user.emailVerified === false && verifiedParam !== '1' && (
+        <div className="card" style={{ borderLeft: '4px solid var(--warning, #f59e0b)', padding: 14, marginBottom: 16 }}>
+          <strong style={{ fontSize: 14 }}>Verify your email</strong>
+          <span className="muted" style={{ fontSize: 13, marginLeft: 8 }}>
+            Check your inbox for a verification link, or go to{' '}
+            <a href="/settings" style={{ color: 'var(--accent)' }}>Settings</a> to resend it.
+          </span>
+        </div>
+      )}
+
       <div className="quick-actions">
         {QUICK_ACTIONS.map((a) => (
           <Link key={a.href} className="quick-action" href={a.href}>
@@ -140,7 +176,7 @@ export default function DashboardPage() {
           <div className="stat-card__icon"><IconStorage /></div>
           <div className="stat-card__label">Storage Used</div>
           <div className="stat-card__value">{storageUsedMb.toFixed(2)} MB</div>
-          <div className="stat-card__hint">of 100 MB limit</div>
+          <div className="stat-card__hint">of {storageLimitLabel} limit{currentPackage ? ` (${currentPackage.name})` : ''}</div>
         </div>
         <div className="card stat-card">
           <div className="stat-card__icon"><IconClock /></div>
@@ -164,7 +200,7 @@ export default function DashboardPage() {
           </div>
           <div className="usage__meta">
             <span>{storageUsedMb.toFixed(2)} MB used</span>
-            <span>{remainingMb.toFixed(2)} MB remaining of 100 MB</span>
+            <span>{remainingMb.toFixed(2)} MB remaining of {storageLimitLabel}</span>
           </div>
           <div className="button-row">
             <Link className="button" href="/upload">Upload Files</Link>

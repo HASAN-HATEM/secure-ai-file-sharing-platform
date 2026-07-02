@@ -13,6 +13,9 @@ import {
 import type { FiletypeResult } from '@/lib/scan-service';
 import { getAllowedMimeTypes, getMaxUploadBytes, shouldRescanOnDownload } from '@/lib/upload-config';
 import { logAudit } from '@/lib/audit';
+import { findUserById } from '@/lib/users';
+import { getPackage } from '@/lib/packages';
+import { getUserStorageUsedBytes } from '@/lib/storage-usage';
 
 function safeFilename(value: string) {
   return value.replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 140) || 'file.bin';
@@ -53,6 +56,16 @@ export async function createUploadTicket(input: {
   const allowed = getAllowedMimeTypes();
   if (!allowed.includes(input.mimeType)) {
     throw new Error(`MIME type not allowed: ${input.mimeType}`);
+  }
+
+  const ownerIdNum = Number(input.ownerId);
+  if (Number.isFinite(ownerIdNum)) {
+    const user = await findUserById(ownerIdNum);
+    const pkg = getPackage(user?.package_key);
+    const used = await getUserStorageUsedBytes(ownerIdNum);
+    if (used + input.sizeBytes > pkg.storageLimitBytes) {
+      throw new Error(`Storage limit exceeded for your ${pkg.name} plan`);
+    }
   }
 
   const record = await prisma.fileObject.create({
@@ -402,7 +415,6 @@ export async function shareFileObject(input: {
   fileId: string;
   ownerId: string;
   recipientUserId: number;
-  sharedSecret: string;
 }) {
   const file = await prisma.fileObject.findFirst({
     where: { id: input.fileId, ownerId: input.ownerId, status: toStatus('READY') }
@@ -411,7 +423,6 @@ export async function shareFileObject(input: {
     throw new Error('File not found');
   }
 
-  const secretHash = await bcrypt.hash(input.sharedSecret, 10);
   const permission = await prisma.fileObjectPermission.upsert({
     where: {
       fileObjectId_recipientUserId: {
@@ -422,11 +433,11 @@ export async function shareFileObject(input: {
     create: {
       fileObjectId: input.fileId,
       recipientUserId: input.recipientUserId,
-      secretHash,
+      secretHash: null,
       canDownload: true
     },
     update: {
-      secretHash,
+      secretHash: null,
       canDownload: true
     }
   });

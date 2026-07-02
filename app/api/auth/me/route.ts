@@ -9,7 +9,7 @@ export async function GET() {
   if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const { rows } = await query(
-    'SELECT id, email, name, role, key_salt, avatar_url, created_at FROM users WHERE id = $1',
+    'SELECT id, email, name, role, key_salt, avatar_url, created_at, email_verified, utm_email FROM users WHERE id = $1',
     [Number(session.user.id)]
   );
   if (!rows[0]) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -19,7 +19,9 @@ export async function GET() {
     user: {
       ...row,
       keySalt: Buffer.from(row.key_salt).toString('base64'),
-      avatarUrl: row.avatar_url ? `/api/auth/me/avatar` : null
+      avatarUrl: row.avatar_url ? `/api/auth/me/avatar` : null,
+      emailVerified: row.email_verified,
+      utmEmail: row.utm_email ?? null
     }
   });
 }

@@ -11,9 +11,8 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
   if (!body) return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
 
   const recipientEmail = String(body.recipientEmail || '').toLowerCase().trim();
-  const sharedSecret = String(body.sharedSecret || '');
-  if (!recipientEmail || !sharedSecret) {
-    return NextResponse.json({ error: 'recipientEmail and sharedSecret are required' }, { status: 400 });
+  if (!recipientEmail) {
+    return NextResponse.json({ error: 'recipientEmail is required' }, { status: 400 });
   }
 
   const recipient = await findUserByEmail(recipientEmail);
@@ -25,8 +24,7 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
     await shareFileObject({
       fileId: params.id,
       ownerId,
-      recipientUserId: recipient.id,
-      sharedSecret
+      recipientUserId: recipient.id
     });
     return NextResponse.json({ ok: true });
   } catch (error: any) {

@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
 const AUTH_ROUTES = ['/login', '/register', '/reset-password'];
-const PUBLIC_PATHS = ['/api/auth', '/_next', '/favicon.ico'];
+const PUBLIC_PATHS = ['/api/auth', '/_next', '/favicon.ico', '/logo.png', '/icon.png', '/apple-icon.png'];
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;

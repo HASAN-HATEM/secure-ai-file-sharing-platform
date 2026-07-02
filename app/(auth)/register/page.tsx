@@ -49,7 +49,7 @@ export default function RegisterPage() {
           router.push('/login');
           return;
         }
-        router.push('/dashboard');
+        router.push('/choose-plan');
         router.refresh();
       }
     } catch (err: any) {
