@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     }
     const user = await createUser(name, email, password, 'USER', false);
 
-    const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000').replace(/\/$/, '');
+    const appUrl = (process.env.APP_URL ?? 'http://localhost:3000').replace(/\/$/, '');
     const raw = await createEmailVerificationToken(user.id);
     const verifyUrl = `${appUrl}/api/auth/verify-email?token=${raw}`;
     await sendEmailVerificationEmail(user.email, user.name, verifyUrl).catch((err) =>

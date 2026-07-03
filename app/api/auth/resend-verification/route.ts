@@ -18,7 +18,7 @@ export async function POST() {
     return NextResponse.json({ ok: true });
   }
 
-  const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000').replace(/\/$/, '');
+  const appUrl = (process.env.APP_URL ?? 'http://localhost:3000').replace(/\/$/, '');
   const raw = await createEmailVerificationToken(userId);
   const verifyUrl = `${appUrl}/api/auth/verify-email?token=${raw}`;
   await sendEmailVerificationEmail(user.email, user.name, verifyUrl);

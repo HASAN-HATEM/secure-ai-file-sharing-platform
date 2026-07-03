@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
   const user = await findUserById(userId);
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-  const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000').replace(/\/$/, '');
+  const appUrl = (process.env.APP_URL ?? 'http://localhost:3000').replace(/\/$/, '');
   const raw = await requestUtmVerification(userId, utmEmail);
   const verifyUrl = `${appUrl}/api/account/utm-verify?token=${raw}`;
 
@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   const token  = req.nextUrl.searchParams.get('token') ?? '';
-  const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000').replace(/\/$/, '');
+  const appUrl = (process.env.APP_URL ?? 'http://localhost:3000').replace(/\/$/, '');
 
   if (!token) {
     return NextResponse.redirect(`${appUrl}/settings?utm=invalid`);

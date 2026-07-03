@@ -5,7 +5,7 @@ export const runtime = 'nodejs';
 
 export async function GET(req: NextRequest) {
   const token = req.nextUrl.searchParams.get('token') ?? '';
-  const appUrl = (process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000').replace(/\/$/, '');
+  const appUrl = (process.env.APP_URL ?? 'http://localhost:3000').replace(/\/$/, '');
 
   if (!token) {
     return NextResponse.redirect(`${appUrl}/dashboard?verified=invalid`);
