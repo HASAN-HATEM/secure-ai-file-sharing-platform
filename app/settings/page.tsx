@@ -282,6 +282,14 @@ export default function SettingsPage() {
       </div>
 
       {/* ── Email verification notice ────────────────────── */}
+      {plan && plan.emailVerified && (
+        <div className="card" style={{ borderLeft: '4px solid #1f7a3f', padding: 16 }}>
+          <strong style={{ fontSize: 14 }}>Email verified</strong>
+          <div className="muted" style={{ fontSize: 13 }}>
+            Your email address is confirmed. No action needed.
+          </div>
+        </div>
+      )}
       {plan && !plan.emailVerified && (
         <div className="card" style={{ borderLeft: '4px solid var(--warning, #f59e0b)', padding: 16 }}>
           <div className="flex" style={{ gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>

@@ -105,7 +105,7 @@ export async function verifyEmailToken(raw: string): Promise<number | null> {
   const hash = hashToken(raw);
   const { rows } = await query(
     `UPDATE users
-     SET email_verified = true, email_verification_token = NULL, email_verification_expires_at = NULL
+     SET email_verified = true
      WHERE email_verification_token = $1 AND email_verification_expires_at > NOW()
      RETURNING id`,
     [hash]
