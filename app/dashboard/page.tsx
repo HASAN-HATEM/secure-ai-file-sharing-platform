@@ -104,11 +104,12 @@ export default function DashboardPage() {
       .slice(0, 4);
   }, [files]);
 
-  const greeting = useMemo(() => {
+  const [greeting, setGreeting] = useState('Welcome back');
+  useEffect(() => {
     const hour = new Date().getHours();
-    if (hour < 12) return 'Good morning';
-    if (hour < 18) return 'Good afternoon';
-    return 'Good evening';
+    if (hour < 12) setGreeting('Good morning');
+    else if (hour < 18) setGreeting('Good afternoon');
+    else setGreeting('Good evening');
   }, []);
 
   const firstName = user?.name?.split(' ')[0];
