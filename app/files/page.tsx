@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 function TextViewer({ url }: { url: string }) {
   const [text, setText] = useState<string | null>(null);
@@ -64,6 +65,8 @@ export default function FilesPage() {
   const [previewLoading, setPreviewLoading] = useState(false);
   const [friends, setFriends] = useState<{ id: number; name: string; email: string }[]>([]);
   const [friendPrompt, setFriendPrompt] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
   const load = async () => {
     const res = await fetch("/api/files");
@@ -430,8 +433,8 @@ export default function FilesPage() {
         </div>
       )}
 
-      {/* Preview overlay */}
-      {(previewLoading || previewState) && (
+      {/* Preview overlay — rendered via portal to escape .page's stacking context */}
+      {mounted && (previewLoading || previewState) && createPortal(
         <div className="preview-overlay" onClick={previewState ? closePreview : undefined}>
           <div className="preview-modal" onClick={(e) => e.stopPropagation()}>
             {previewLoading ? (
@@ -471,7 +474,8 @@ export default function FilesPage() {
               </>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

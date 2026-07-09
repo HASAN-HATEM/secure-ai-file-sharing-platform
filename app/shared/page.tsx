@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 function TextViewer({ url }: { url: string }) {
   const [text, setText] = useState<string | null>(null);
@@ -73,6 +74,8 @@ export default function SharedPage() {
   const [secretSubmitting, setSecretSubmitting] = useState(false);
   const removeDialogRef = useRef<HTMLDialogElement>(null);
   const [removeTarget, setRemoveTarget] = useState<{ id: string; filename: string } | null>(null);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
   const loadFiles = async () => {
     const res = await fetch("/api/files/list");
@@ -334,8 +337,8 @@ export default function SharedPage() {
         </div>
       </dialog>
 
-      {/* Preview overlay */}
-      {(previewLoading || previewState) && (
+      {/* Preview overlay — rendered via portal to escape .page's stacking context */}
+      {mounted && (previewLoading || previewState) && createPortal(
         <div className="preview-overlay" onClick={previewState ? closePreview : undefined}>
           <div className="preview-modal" onClick={(e) => e.stopPropagation()}>
             {previewLoading ? (
@@ -375,7 +378,8 @@ export default function SharedPage() {
               </>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
