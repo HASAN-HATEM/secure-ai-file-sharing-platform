@@ -1439,7 +1439,7 @@ th {
   inset: 0;
   background: rgba(10, 22, 50, 0.72);
   backdrop-filter: blur(4px);
-  z-index: 100;
+  z-index: 500;
   display: flex;
   padding: 24px;
   box-sizing: border-box;
