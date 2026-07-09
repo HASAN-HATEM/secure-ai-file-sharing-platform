@@ -71,6 +71,8 @@ export default function SharedPage() {
   const [previewLoading, setPreviewLoading] = useState(false);
   const [secretError, setSecretError] = useState("");
   const [secretSubmitting, setSecretSubmitting] = useState(false);
+  const removeDialogRef = useRef<HTMLDialogElement>(null);
+  const [removeTarget, setRemoveTarget] = useState<{ id: string; filename: string } | null>(null);
 
   const loadFiles = async () => {
     const res = await fetch("/api/files/list");
@@ -89,7 +91,20 @@ export default function SharedPage() {
 
   const shared = useMemo(() => files.filter((f) => f.is_owner === false), [files]);
 
-  const removeFromList = async (id: string) => {
+  const openRemoveDialog = (id: string, filename: string) => {
+    setRemoveTarget({ id, filename });
+    removeDialogRef.current?.showModal();
+  };
+
+  const closeRemoveDialog = () => {
+    removeDialogRef.current?.close();
+    setRemoveTarget(null);
+  };
+
+  const confirmRemoveFromList = async () => {
+    if (!removeTarget) return;
+    const id = removeTarget.id;
+    closeRemoveDialog();
     const res = await fetch(`/api/files/${id}/unshare`, { method: "DELETE" });
     const data = await res.json().catch(() => ({}));
     if (res.ok) {
@@ -243,11 +258,7 @@ export default function SharedPage() {
                   <button
                     className="icon-btn"
                     type="button"
-                    onClick={() => {
-                      if (confirm(`Remove "${f.filename}" from your shared list? The owner keeps the file — this only removes it from your view.`)) {
-                        removeFromList(f.id);
-                      }
-                    }}
+                    onClick={() => openRemoveDialog(f.id, f.filename)}
                     title="Remove from my list"
                   >
                     🗑
@@ -301,6 +312,25 @@ export default function SharedPage() {
               <button className="button ghost" type="button" onClick={closeSecretDialog}>Cancel</button>
             </div>
           </form>
+        </div>
+      </dialog>
+
+      {/* Remove-from-list confirm dialog */}
+      <dialog
+        ref={removeDialogRef}
+        className="share-dialog"
+        onClick={(e) => { if (e.target === removeDialogRef.current) closeRemoveDialog(); }}
+      >
+        <div className="share-dialog__body">
+          <div className="share-dialog__title">Remove from your shared list?</div>
+          <div className="share-dialog__sub">{removeTarget?.filename}</div>
+          <p className="muted" style={{ fontSize: 13, margin: "12px 0 20px" }}>
+            The owner keeps the file — this only removes it from your view.
+          </p>
+          <div className="button-row">
+            <button className="button" type="button" onClick={confirmRemoveFromList}>Remove</button>
+            <button className="button ghost" type="button" onClick={closeRemoveDialog}>Cancel</button>
+          </div>
         </div>
       </dialog>
 
