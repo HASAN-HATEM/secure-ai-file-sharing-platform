@@ -415,6 +415,7 @@ export async function shareFileObject(input: {
   fileId: string;
   ownerId: string;
   recipientUserId: number;
+  secret?: string;
 }) {
   const file = await prisma.fileObject.findFirst({
     where: { id: input.fileId, ownerId: input.ownerId, status: toStatus('READY') }
@@ -422,6 +423,8 @@ export async function shareFileObject(input: {
   if (!file) {
     throw new Error('File not found');
   }
+
+  const secretHash = input.secret ? await bcrypt.hash(input.secret, 10) : null;
 
   const permission = await prisma.fileObjectPermission.upsert({
     where: {
@@ -433,11 +436,11 @@ export async function shareFileObject(input: {
     create: {
       fileObjectId: input.fileId,
       recipientUserId: input.recipientUserId,
-      secretHash: null,
+      secretHash,
       canDownload: true
     },
     update: {
-      secretHash: null,
+      secretHash,
       canDownload: true
     }
   });

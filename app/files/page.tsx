@@ -46,6 +46,13 @@ function canPreview(mime: string): boolean {
 export default function FilesPage() {
   const [files, setFiles] = useState<any[]>([]);
   const [message, setMessage] = useState("");
+  const [messageError, setMessageError] = useState(false);
+
+  useEffect(() => {
+    if (!message) return;
+    const t = setTimeout(() => setMessage(""), 3500);
+    return () => clearTimeout(t);
+  }, [message]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const [view, setView] = useState<"list" | "grid">("list");
@@ -55,6 +62,8 @@ export default function FilesPage() {
   const secretDialogRef = useRef<HTMLDialogElement>(null);
   const [previewState, setPreviewState] = useState<PreviewState | null>(null);
   const [previewLoading, setPreviewLoading] = useState(false);
+  const [friends, setFriends] = useState<{ id: number; name: string; email: string }[]>([]);
+  const [friendPrompt, setFriendPrompt] = useState<string | null>(null);
 
   const load = async () => {
     const res = await fetch("/api/files");
@@ -64,7 +73,31 @@ export default function FilesPage() {
     }
   };
 
-  useEffect(() => { load(); }, []);
+  const loadFriends = async () => {
+    const res = await fetch("/api/friends");
+    if (res.ok) {
+      const data = await res.json();
+      setFriends(data.friends || []);
+    }
+  };
+
+  useEffect(() => { load(); loadFriends(); }, []);
+
+  const confirmAddFriend = async () => {
+    if (!friendPrompt) return;
+    const email = friendPrompt;
+    setFriendPrompt(null);
+    const res = await fetch("/api/friends", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email })
+    });
+    if (res.ok) {
+      setMessageError(false);
+      setMessage(`${email} added to your friends list.`);
+      loadFriends();
+    }
+  };
 
   const openShare = (id: string, filename: string) => {
     setShareTarget({ id, filename });
@@ -101,15 +134,17 @@ export default function FilesPage() {
       openSecretDialog({ fileId, filename, mimeType: "", purpose: "download" });
       return;
     }
+    setMessageError(false);
     setMessage("Fetching file...");
     const result = await fetchBlob(fileId, secret);
-    if (typeof result === "string") { setMessage(result); return; }
+    if (typeof result === "string") { setMessageError(true); setMessage(result); return; }
     const url = URL.createObjectURL(result);
     const a = document.createElement("a");
     a.href = url;
     a.download = filename;
     a.click();
     URL.revokeObjectURL(url);
+    setMessageError(false);
     setMessage("Downloaded");
   };
 
@@ -121,7 +156,7 @@ export default function FilesPage() {
     setPreviewLoading(true);
     const result = await fetchBlob(fileId, secret);
     setPreviewLoading(false);
-    if (typeof result === "string") { setMessage(result); return; }
+    if (typeof result === "string") { setMessageError(true); setMessage(result); return; }
     const blobUrl = URL.createObjectURL(result);
     setPreviewState({ blobUrl, mimeType: mimeType || result.type, filename });
   };
@@ -148,8 +183,8 @@ export default function FilesPage() {
   const remove = async (id: string) => {
     const res = await fetch(`/api/files/${id}/delete`, { method: "DELETE" });
     const data = await res.json();
-    if (res.ok) { setMessage("Deleted"); load(); }
-    else setMessage(data.error || "Delete failed");
+    if (res.ok) { setMessageError(false); setMessage("Deleted"); load(); }
+    else { setMessageError(true); setMessage(data.error || "Delete failed"); }
   };
 
   const share = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -164,8 +199,16 @@ export default function FilesPage() {
       body: JSON.stringify({ recipientEmail, sharedSecret: recipientSecret })
     });
     const data = await res.json().catch(() => ({}));
-    if (res.ok) { setMessage("Shared successfully."); closeShare(); }
-    else setMessage(data.error || "Share failed");
+    if (res.ok) {
+      setMessageError(false);
+      setMessage(`Shared successfully with ${recipientEmail}.`);
+      closeShare();
+      const alreadyFriend = friends.some((f) => f.email.toLowerCase() === recipientEmail.toLowerCase());
+      if (!alreadyFriend) setFriendPrompt(recipientEmail);
+    } else {
+      setMessageError(true);
+      setMessage(data.error || "Share failed");
+    }
   };
 
   const categorise = (mime: string) => {
@@ -230,7 +273,16 @@ export default function FilesPage() {
         </div>
       </div>
 
-      {message && <div className="status-tag" style={{ marginBottom: 12 }}>{message}</div>}
+      {message && (
+        <div className="notif-toast">
+          <div className="notif-toast__icon">{messageError ? "⚠" : "✅"}</div>
+          <div className="notif-toast__content">
+            <div className="notif-toast__title">{messageError ? "Error" : "Success"}</div>
+            <div className="notif-toast__sub">{message}</div>
+          </div>
+          <button className="notif-toast__close" type="button" onClick={() => setMessage("")}>✕</button>
+        </div>
+      )}
 
       {view === "grid" ? (
         <div className="file-grid">
@@ -347,7 +399,10 @@ export default function FilesPage() {
           <div className="share-dialog__sub">{shareTarget?.filename}</div>
           <form onSubmit={share}>
             <label style={{ display: "block", fontWeight: 700, fontSize: 14, color: "var(--muted)", marginBottom: 2 }}>Recipient email</label>
-            <input name="recipient" className="input" placeholder="colleague@example.com" required />
+            <input name="recipient" className="input" placeholder="colleague@example.com" list="friends-datalist" required />
+            <datalist id="friends-datalist">
+              {friends.map((f) => <option key={f.id} value={f.email}>{f.name}</option>)}
+            </datalist>
             <label style={{ display: "block", fontWeight: 700, fontSize: 14, color: "var(--muted)", marginBottom: 2 }}>Shared secret</label>
             <input name="secret" className="input" placeholder="Secret phrase the recipient will need" required />
             <div className="button-row" style={{ marginTop: 8 }}>
@@ -357,6 +412,23 @@ export default function FilesPage() {
           </form>
         </div>
       </dialog>
+
+      {/* Add-to-friends prompt */}
+      {friendPrompt && (
+        <div className="notif-toast">
+          <div className="notif-toast__icon">👤</div>
+          <div className="notif-toast__content">
+            <div className="notif-toast__title">Add to friends list?</div>
+            <div className="notif-toast__sub">
+              Add {friendPrompt} so it's easier to pick next time.
+            </div>
+            <div className="button-row" style={{ marginTop: 8 }}>
+              <button className="button" type="button" onClick={confirmAddFriend}>Add friend</button>
+              <button className="button ghost" type="button" onClick={() => setFriendPrompt(null)}>Not now</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Preview overlay */}
       {(previewLoading || previewState) && (

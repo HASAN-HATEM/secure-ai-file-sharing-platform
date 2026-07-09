@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Readable } from 'stream';
 import { resolveOwnerId } from '@/lib/request-user';
-import { findFileForDownload, maybeRescanOnDownload } from '@/lib/file-objects';
+import { findFileForDownload, maybeRescanOnDownload, verifySharedSecret } from '@/lib/file-objects';
 import { getObjectBuffer } from '@/lib/r2';
 import { decryptFromStorage } from '@/lib/storage-crypto';
 
@@ -15,6 +15,14 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   if (!access || !access.file.storageKey) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
+  if (!access.isOwner && access.permission?.secretHash) {
+    const secret = req.nextUrl.searchParams.get('secret') || '';
+    const valid = secret && (await verifySharedSecret(secret, access.permission.secretHash));
+    if (!valid) {
+      return NextResponse.json({ error: 'Invalid or missing shared secret' }, { status: 401 });
+    }
+  }
+
   const file = access.file;
   const storageKey = file.storageKey;
   if (!storageKey) {

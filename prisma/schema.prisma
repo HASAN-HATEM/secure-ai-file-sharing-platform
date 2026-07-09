@@ -99,6 +99,21 @@ model users {
   files                 files[]
   fileObjectPermissions FileObjectPermission[]
   password_reset_tokens password_reset_tokens[]
+  friendsAsOwner        Friend[]                @relation("FriendOwner")
+  friendsAsFriend       Friend[]                @relation("FriendOf")
+}
+
+model Friend {
+  id           String   @id @default(cuid())
+  ownerId      Int      @map("owner_id")
+  friendUserId Int      @map("friend_user_id")
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  owner        users    @relation("FriendOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  friend       users    @relation("FriendOf", fields: [friendUserId], references: [id], onDelete: Cascade)
+
+  @@map("friends")
+  @@unique([ownerId, friendUserId], map: "friends_unique")
+  @@index([ownerId], map: "friends_owner_idx")
 }
 
 model password_reset_tokens {
