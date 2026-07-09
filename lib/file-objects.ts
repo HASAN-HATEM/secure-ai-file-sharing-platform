@@ -508,6 +508,16 @@ export async function verifySharedSecret(secret: string, secretHash: string) {
   return bcrypt.compare(secret, secretHash);
 }
 
+export async function removeSharedAccess(recipientUserId: number, fileId: string) {
+  const result = await prisma.fileObjectPermission.deleteMany({
+    where: { fileObjectId: fileId, recipientUserId }
+  });
+  if (result.count === 0) {
+    throw new Error('Not found');
+  }
+  logAudit(recipientUserId, 'FILE_UNSHARE_SELF', 'file_object', null, { fileId }).catch(() => null);
+}
+
 export async function deleteFileObject(ownerId: string, id: string) {
   const record = await prisma.fileObject.findFirst({ where: { id, ownerId, deletedAt: null } });
   if (!record) throw new Error('Not found');

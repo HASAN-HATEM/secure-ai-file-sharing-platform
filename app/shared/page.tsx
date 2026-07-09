@@ -58,6 +58,13 @@ export default function SharedPage() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
+  const [messageError, setMessageError] = useState(false);
+
+  useEffect(() => {
+    if (!message) return;
+    const t = setTimeout(() => setMessage(""), 3500);
+    return () => clearTimeout(t);
+  }, [message]);
   const secretDialogRef = useRef<HTMLDialogElement>(null);
   const [pendingAction, setPendingAction] = useState<PendingAction | null>(null);
   const [previewState, setPreviewState] = useState<PreviewState | null>(null);
@@ -65,18 +72,35 @@ export default function SharedPage() {
   const [secretError, setSecretError] = useState("");
   const [secretSubmitting, setSecretSubmitting] = useState(false);
 
+  const loadFiles = async () => {
+    const res = await fetch("/api/files/list");
+    if (res.ok) {
+      const data = await res.json();
+      setFiles(data.files || []);
+    }
+  };
+
   useEffect(() => {
     (async () => {
-      const res = await fetch("/api/files/list");
-      if (res.ok) {
-        const data = await res.json();
-        setFiles(data.files || []);
-      }
+      await loadFiles();
       setLoading(false);
     })();
   }, []);
 
   const shared = useMemo(() => files.filter((f) => f.is_owner === false), [files]);
+
+  const removeFromList = async (id: string) => {
+    const res = await fetch(`/api/files/${id}/unshare`, { method: "DELETE" });
+    const data = await res.json().catch(() => ({}));
+    if (res.ok) {
+      setMessageError(false);
+      setMessage("Removed from your shared list.");
+      loadFiles();
+    } else {
+      setMessageError(true);
+      setMessage(data.error || "Failed to remove");
+    }
+  };
 
   const openSecretDialog = (action: PendingAction) => {
     setPendingAction(action);
@@ -120,6 +144,7 @@ export default function SharedPage() {
       a.download = action.filename;
       a.click();
       URL.revokeObjectURL(url);
+      setMessageError(false);
       setMessage("Downloaded successfully.");
     } else {
       const result = await fetchBlob(action.fileId, secret);
@@ -150,7 +175,16 @@ export default function SharedPage() {
           {shared.length > 0 && <span className="status-tag">{shared.length} file{shared.length !== 1 ? "s" : ""}</span>}
         </div>
 
-        {message && <div className="status-tag" style={{ marginBottom: 12 }}>{message}</div>}
+        {message && (
+          <div className="notif-toast">
+            <div className="notif-toast__icon">{messageError ? "⚠" : "✅"}</div>
+            <div className="notif-toast__content">
+              <div className="notif-toast__title">{messageError ? "Error" : "Success"}</div>
+              <div className="notif-toast__sub">{message}</div>
+            </div>
+            <button className="notif-toast__close" type="button" onClick={() => setMessage("")}>✕</button>
+          </div>
+        )}
 
         {loading && <div className="muted">Loading...</div>}
         {!loading && shared.length === 0 && (
@@ -205,6 +239,18 @@ export default function SharedPage() {
                     title="Download"
                   >
                     ⬇
+                  </button>
+                  <button
+                    className="icon-btn"
+                    type="button"
+                    onClick={() => {
+                      if (confirm(`Remove "${f.filename}" from your shared list? The owner keeps the file — this only removes it from your view.`)) {
+                        removeFromList(f.id);
+                      }
+                    }}
+                    title="Remove from my list"
+                  >
+                    🗑
                   </button>
                 </div>
               </div>
