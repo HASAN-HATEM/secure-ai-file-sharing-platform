@@ -17,7 +17,10 @@ export async function GET(req: NextRequest) {
       created_at: file.createdAt,
       category_label: file.categoryLabel,
       category_confidence: file.categoryConfidence,
-      is_owner: file.isOwner
+      is_owner: file.isOwner,
+      owner_name: file.ownerName,
+      owner_email: file.ownerEmail,
+      secret_required: file.secretRequired
     })),
     activity
   });

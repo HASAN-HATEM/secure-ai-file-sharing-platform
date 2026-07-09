@@ -36,6 +36,9 @@ type FileItem = {
   size_bytes: number;
   created_at: string;
   is_owner?: boolean;
+  owner_name?: string | null;
+  owner_email?: string | null;
+  secret_required?: boolean;
 };
 
 type PreviewState = {
@@ -59,6 +62,8 @@ export default function SharedPage() {
   const [pendingAction, setPendingAction] = useState<PendingAction | null>(null);
   const [previewState, setPreviewState] = useState<PreviewState | null>(null);
   const [previewLoading, setPreviewLoading] = useState(false);
+  const [secretError, setSecretError] = useState("");
+  const [secretSubmitting, setSecretSubmitting] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -75,12 +80,14 @@ export default function SharedPage() {
 
   const openSecretDialog = (action: PendingAction) => {
     setPendingAction(action);
+    setSecretError("");
     secretDialogRef.current?.showModal();
   };
 
   const closeSecretDialog = () => {
     secretDialogRef.current?.close();
     setPendingAction(null);
+    setSecretError("");
   };
 
   const fetchBlob = async (fileId: string, secret: string): Promise<Blob | string> => {
@@ -97,13 +104,16 @@ export default function SharedPage() {
     const form = new FormData(e.currentTarget);
     const secret = String(form.get("secret") || "");
     const action = pendingAction;
-    closeSecretDialog();
     if (!action) return;
 
+    setSecretError("");
+    setSecretSubmitting(true);
+
     if (action.purpose === "download") {
-      setMessage("Fetching file...");
       const result = await fetchBlob(action.fileId, secret);
-      if (typeof result === "string") { setMessage(result); return; }
+      setSecretSubmitting(false);
+      if (typeof result === "string") { setSecretError(result); return; }
+      closeSecretDialog();
       const url = URL.createObjectURL(result);
       const a = document.createElement("a");
       a.href = url;
@@ -112,10 +122,10 @@ export default function SharedPage() {
       URL.revokeObjectURL(url);
       setMessage("Downloaded successfully.");
     } else {
-      setPreviewLoading(true);
       const result = await fetchBlob(action.fileId, secret);
-      setPreviewLoading(false);
-      if (typeof result === "string") { setMessage(result); return; }
+      setSecretSubmitting(false);
+      if (typeof result === "string") { setSecretError(result); return; }
+      closeSecretDialog();
       const blobUrl = URL.createObjectURL(result);
       setPreviewState({ blobUrl, mimeType: action.mimeType || result.type, filename: action.filename });
     }
@@ -166,13 +176,19 @@ export default function SharedPage() {
                   <div className="file-icon">{mimeIcon(f.mime_type)}</div>
                   <div>
                     <div style={{ fontWeight: 700 }}>{f.filename}</div>
-                    <div className="muted" style={{ fontSize: 12 }}>{f.mime_type}</div>
+                    <div className="muted" style={{ fontSize: 12 }}>
+                      Shared by {f.owner_name || f.owner_email || "another user"}
+                    </div>
                   </div>
                 </div>
                 <div>{(f.size_bytes / 1024).toFixed(2)} KB</div>
                 <div className="muted">{new Date(f.created_at).toLocaleString()}</div>
                 <div><span className="badge">{f.mime_type?.split("/")[1]?.toUpperCase() || "File"}</span></div>
-                <div><span className="chip chip--success">Granted</span></div>
+                <div>
+                  {f.secret_required
+                    ? <span className="chip chip--warning">Secret required</span>
+                    : <span className="chip chip--success">Granted</span>}
+                </div>
                 <div style={{ display: "flex", justifyContent: "flex-end", gap: 6 }}>
                   <button
                     className="icon-btn"
@@ -211,6 +227,15 @@ export default function SharedPage() {
           <p className="muted" style={{ fontSize: 13, margin: "0 0 16px" }}>
             Enter the shared secret provided by the file owner to continue.
           </p>
+          {secretError && (
+            <div className="verdict-banner verdict-banner--blocked" style={{ marginBottom: 14 }}>
+              <div className="verdict-banner__icon">⚠</div>
+              <div>
+                <div className="verdict-banner__title">Access denied</div>
+                <div className="verdict-banner__sub">{secretError}</div>
+              </div>
+            </div>
+          )}
           <form onSubmit={handleSecretSubmit}>
             <label style={{ display: "block", fontWeight: 700, fontSize: 14, color: "var(--muted)", marginBottom: 2 }}>
               Shared secret
@@ -224,8 +249,8 @@ export default function SharedPage() {
               autoComplete="off"
             />
             <div className="button-row" style={{ marginTop: 8 }}>
-              <button className="button" type="submit">
-                {pendingAction?.purpose === "preview" ? "Preview" : "Download"}
+              <button className="button" type="submit" disabled={secretSubmitting}>
+                {secretSubmitting ? "Verifying…" : (pendingAction?.purpose === "preview" ? "Preview" : "Download")}
               </button>
               <button className="button ghost" type="button" onClick={closeSecretDialog}>Cancel</button>
             </div>

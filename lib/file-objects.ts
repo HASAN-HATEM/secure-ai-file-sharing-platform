@@ -367,11 +367,24 @@ export async function listReadyFiles(ownerId: string) {
           createdAt: true
         },
         orderBy: { createdAt: 'desc' }
-      }
+      },
+      permissions: Number.isFinite(numericOwnerId)
+        ? { where: { recipientUserId: numericOwnerId }, select: { secretHash: true } }
+        : false
     }
   });
 
-  return rows.map((row: {
+  const ownerCache = new Map<string, { name: string; email: string } | null>();
+  async function lookupOwner(id: string) {
+    if (ownerCache.has(id)) return ownerCache.get(id) ?? null;
+    const numericId = Number(id);
+    const user = Number.isFinite(numericId) ? await findUserById(numericId) : null;
+    const result = user ? { name: user.name, email: user.email } : null;
+    ownerCache.set(id, result);
+    return result;
+  }
+
+  return Promise.all(rows.map(async (row: {
     id: string;
     ownerId: string;
     filename: string;
@@ -390,19 +403,25 @@ export async function listReadyFiles(ownerId: string) {
       confidence: number | null;
       createdAt: Date;
     }>;
+    permissions?: Array<{ secretHash: string | null }>;
   }) => {
     const filetypeClassification = row.classifications.find((item) => item.classifier === 'filetype') || null;
     const imagenetClassification = row.classifications.find((item) => item.classifier === 'imagenet') || null;
     const textClassification = row.classifications.find((item) => item.classifier === 'text') || null;
+    const isOwner = row.ownerId === ownerId;
+    const owner = isOwner ? null : await lookupOwner(row.ownerId);
     return {
       ...row,
-      isOwner: row.ownerId === ownerId,
+      isOwner,
+      ownerName: owner?.name ?? null,
+      ownerEmail: owner?.email ?? null,
+      secretRequired: !isOwner && !!row.permissions?.[0]?.secretHash,
       sizeBytes: Number(row.sizeBytes),
       filetypeClassification,
       imagenetClassification,
       textClassification
     };
-  });
+  }));
 }
 
 export async function findReadyFile(ownerId: string, id: string) {

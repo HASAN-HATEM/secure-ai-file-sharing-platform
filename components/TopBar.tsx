@@ -64,9 +64,10 @@ function formatTitle(pathname: string) {
 export default function TopBar() {
   const pathname = usePathname();
   const title = formatTitle(pathname);
-  const [user, setUser] = useState<{ name?: string; role?: string; avatarUrl?: string | null } | null>(null);
-  const [newCount, setNewCount] = useState(0);
-  const [toastFiles, setToastFiles] = useState<Array<{ id: string; filename: string }>>([]);
+  const [user, setUser] = useState<{ name?: string; role?: string; avatarUrl?: string | null; emailVerified?: boolean } | null>(null);
+  const [toastFiles, setToastFiles] = useState<Array<{ id: string; filename: string; ownerName?: string | null }>>([]);
+  const [unseenSharedFiles, setUnseenSharedFiles] = useState<Array<{ id: string; filename: string; ownerName?: string | null }>>([]);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -87,23 +88,24 @@ export default function TopBar() {
         const res = await fetch('/api/files', { cache: 'no-store' });
         if (!res.ok) return;
         const data = await res.json();
-        const sharedFiles: Array<{ id: string; filename: string }> = (data.files || [])
-          .filter((f: any) => !f.isOwner);
+        const sharedFiles: Array<{ id: string; filename: string; ownerName?: string | null }> = (data.files || [])
+          .filter((f: any) => !f.isOwner)
+          .map((f: any) => ({ id: f.id, filename: f.filename, ownerName: f.ownerName }));
         const sharedIds = sharedFiles.map(f => f.id);
         const seen = getSeenIds();
         const newItems = sharedFiles.filter(f => !seen.has(f.id));
 
-        if (newItems.length > 0 && pathname !== '/shared') {
-          setNewCount(newItems.length);
-          setToastFiles(newItems);
-          if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
-          toastTimerRef.current = setTimeout(() => setToastFiles([]), 7000);
-        } else if (pathname === '/shared') {
+        if (pathname === '/shared') {
           markAsSeen(sharedIds);
-          setNewCount(0);
           setToastFiles([]);
+          setUnseenSharedFiles([]);
         } else {
-          setNewCount(sharedIds.filter(id => !seen.has(id)).length);
+          setUnseenSharedFiles(newItems);
+          if (newItems.length > 0) {
+            setToastFiles(newItems);
+            if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+            toastTimerRef.current = setTimeout(() => setToastFiles([]), 7000);
+          }
         }
       } catch {}
     };
@@ -117,16 +119,17 @@ export default function TopBar() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
+  const needsEmailVerification = user?.emailVerified === false;
+  const notifCount = unseenSharedFiles.length + (needsEmailVerification ? 1 : 0);
+
   const handleBellClick = () => {
-    fetch('/api/files', { cache: 'no-store' })
-      .then(r => r.json())
-      .then(data => {
-        const ids = (data.files || []).filter((f: any) => !f.isOwner).map((f: any) => f.id as string);
-        markAsSeen(ids);
-        setNewCount(0);
-        setToastFiles([]);
-      })
-      .catch(() => {});
+    setDropdownOpen((open) => !open);
+  };
+
+  const dismissSharedNotifications = () => {
+    markAsSeen(unseenSharedFiles.map((f) => f.id));
+    setUnseenSharedFiles([]);
+    setToastFiles([]);
   };
 
   return (
@@ -140,6 +143,7 @@ export default function TopBar() {
             </div>
             <div className="notif-toast__sub">
               {toastFiles[0].filename}{toastFiles.length > 1 ? ` and ${toastFiles.length - 1} more` : ''}
+              {toastFiles[0].ownerName ? ` — from ${toastFiles[0].ownerName}` : ''}
             </div>
           </div>
           <button className="notif-toast__close" type="button" onClick={() => setToastFiles([])}>✕</button>
@@ -153,15 +157,59 @@ export default function TopBar() {
           <span className="breadcrumb__current">{title}</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <Link
-            href="/shared"
-            className="notif-bell"
-            onClick={handleBellClick}
-            title={newCount > 0 ? `${newCount} new shared file${newCount !== 1 ? 's' : ''}` : 'Shared with me'}
-          >
-            🔔
-            {newCount > 0 && <span className="notif-badge">{newCount > 9 ? '9+' : newCount}</span>}
-          </Link>
+          <div className="notif-dropdown-wrap">
+            <button
+              type="button"
+              className="notif-bell"
+              onClick={handleBellClick}
+              title={notifCount > 0 ? `${notifCount} notification${notifCount !== 1 ? 's' : ''}` : 'Notifications'}
+            >
+              🔔
+              {notifCount > 0 && <span className="notif-badge">{notifCount > 9 ? '9+' : notifCount}</span>}
+            </button>
+            {dropdownOpen && (
+              <>
+                <div className="notif-dropdown-backdrop" onClick={() => setDropdownOpen(false)} />
+                <div className="notif-dropdown">
+                  <div className="notif-dropdown__header">Notifications</div>
+                  {unseenSharedFiles.length === 0 && !needsEmailVerification && (
+                    <div className="notif-dropdown__empty">No new notifications</div>
+                  )}
+                  {unseenSharedFiles.length > 0 && (
+                    <Link
+                      href="/shared"
+                      className="notif-dropdown__item"
+                      onClick={() => { dismissSharedNotifications(); setDropdownOpen(false); }}
+                    >
+                      <span className="notif-dropdown__icon">🔗</span>
+                      <div>
+                        <div className="notif-dropdown__title">
+                          {unseenSharedFiles.length === 1 ? 'New file shared with you' : `${unseenSharedFiles.length} new files shared with you`}
+                        </div>
+                        <div className="notif-dropdown__sub">
+                          {unseenSharedFiles[0].filename}{unseenSharedFiles.length > 1 ? ` and ${unseenSharedFiles.length - 1} more` : ''}
+                          {unseenSharedFiles[0].ownerName ? ` — from ${unseenSharedFiles[0].ownerName}` : ''}
+                        </div>
+                      </div>
+                    </Link>
+                  )}
+                  {needsEmailVerification && (
+                    <Link
+                      href="/settings"
+                      className="notif-dropdown__item"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      <span className="notif-dropdown__icon">✉️</span>
+                      <div>
+                        <div className="notif-dropdown__title">Verify your email</div>
+                        <div className="notif-dropdown__sub">Confirm your address to unlock full access.</div>
+                      </div>
+                    </Link>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
           <div className="user-pill">
             <TopAvatar user={user} />
             <div>
