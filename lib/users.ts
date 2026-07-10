@@ -13,6 +13,7 @@ export type UserRecord = {
   avatar_url?: string | null;
   email_verified: boolean;
   utm_email?: string | null;
+  disabled: boolean;
 };
 
 const EMAIL_VERIFY_EXPIRES_MS = 24 * 60 * 60 * 1000;
