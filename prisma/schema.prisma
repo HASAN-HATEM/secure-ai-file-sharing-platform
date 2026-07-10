@@ -93,6 +93,7 @@ model users {
   utm_verification_token          String?
   utm_verification_pending_email  String?
   utm_verification_expires_at     DateTime? @db.Timestamptz(6)
+  disabled              Boolean                 @default(false)
   created_at            DateTime?               @default(now()) @db.Timestamptz(6)
   audit_logs            audit_logs[]
   file_permissions      file_permissions[]
@@ -114,6 +115,14 @@ model Friend {
   @@map("friends")
   @@unique([ownerId, friendUserId], map: "friends_unique")
   @@index([ownerId], map: "friends_owner_idx")
+}
+
+model SystemSettings {
+  id              Int      @id @default(1)
+  maintenanceMode Boolean  @default(false) @map("maintenance_mode")
+  updatedAt       DateTime @default(now()) @map("updated_at") @db.Timestamptz(6)
+
+  @@map("system_settings")
 }
 
 model password_reset_tokens {

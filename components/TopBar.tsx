@@ -46,7 +46,6 @@ const LABELS: Record<string, string> = {
   '/shared': 'Shared with Me',
   '/analytics': 'Analytics',
   '/security': 'Security Logs',
-  '/system': 'System Settings',
   '/settings': 'Settings',
   '/trash': 'Trash'
 };

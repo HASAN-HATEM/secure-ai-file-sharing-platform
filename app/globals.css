@@ -18,6 +18,34 @@
   box-sizing: border-box;
 }
 
+.maintenance-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.maintenance-screen__icon {
+  font-size: 52px;
+  margin-bottom: 12px;
+}
+
+.maintenance-screen h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+}
+
+.maintenance-screen p {
+  color: var(--muted);
+  max-width: 440px;
+  margin: 0;
+}
+
 body {
   margin: 0;
   font-family: 'Nunito', 'Inter', system-ui, -apple-system, sans-serif;

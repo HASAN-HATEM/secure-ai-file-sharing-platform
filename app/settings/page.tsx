@@ -105,6 +105,8 @@ export default function SettingsPage() {
 
   const [resendLoading, setResendLoading] = useState(false);
   const [resendMsg, setResendMsg]   = useState('');
+  const [maintenance, setMaintenance] = useState(false);
+  const [maintenanceSaving, setMaintenanceSaving] = useState(false);
 
   const loadUser = async () => {
     const res = await fetch('/api/auth/me', { cache: 'no-store' });
@@ -120,6 +122,29 @@ export default function SettingsPage() {
       const data = await res.json();
       setPlan(data);
     }
+  };
+
+  useEffect(() => {
+    if (user?.role !== 'ADMIN') return;
+    (async () => {
+      const res = await fetch('/api/admin/system-settings', { cache: 'no-store' });
+      if (res.ok) {
+        const data = await res.json();
+        setMaintenance(!!data.maintenanceMode);
+      }
+    })();
+  }, [user?.role]);
+
+  const toggleMaintenance = async () => {
+    const next = !maintenance;
+    setMaintenanceSaving(true);
+    const res = await fetch('/api/admin/system-settings', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ maintenanceMode: next })
+    });
+    if (res.ok) setMaintenance(next);
+    setMaintenanceSaving(false);
   };
 
   useEffect(() => {
@@ -566,36 +591,29 @@ export default function SettingsPage() {
         </form>
       </div>
 
-      {/* ── Notification preferences ─────────────────────── */}
-      <div className="card">
-        <div className="card__header">
-          <div>
-            <div className="card__title">Notification Preferences</div>
-            <div className="card__subtitle">Control which events you are notified about.</div>
+      {/* ── System settings (admin only) ─────────────────── */}
+      {user?.role === 'ADMIN' && (
+        <div className="card">
+          <div className="card__header">
+            <div>
+              <div className="card__title">System Settings</div>
+              <div className="card__subtitle">Platform-wide controls, visible to admins only.</div>
+            </div>
+          </div>
+          <div className="toggle-row">
+            <div className="toggle-label">
+              <strong>Maintenance Mode</strong>
+              <span className="muted">Temporarily block non-admin access to the platform.</span>
+            </div>
+            <button
+              className={`toggle${maintenance ? ' active' : ''}`}
+              onClick={toggleMaintenance}
+              disabled={maintenanceSaving}
+              aria-label="toggle maintenance"
+            />
           </div>
         </div>
-        <div className="toggle-row">
-          <div className="toggle-label">
-            <strong>File Upload Notifications</strong>
-            <span className="muted">Get notified when file uploads complete</span>
-          </div>
-          <button className="toggle active" aria-label="toggle upload alerts" />
-        </div>
-        <div className="toggle-row">
-          <div className="toggle-label">
-            <strong>Login Notifications</strong>
-            <span className="muted">Get notified when someone logs into your account</span>
-          </div>
-          <button className="toggle" aria-label="toggle login alerts" />
-        </div>
-        <div className="toggle-row">
-          <div className="toggle-label">
-            <strong>Threat Alerts</strong>
-            <span className="muted">Get notified when a malicious file is blocked</span>
-          </div>
-          <button className="toggle active" aria-label="toggle threat alerts" />
-        </div>
-      </div>
+      )}
     </div>
   );
 }

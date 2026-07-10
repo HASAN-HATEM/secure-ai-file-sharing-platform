@@ -10,10 +10,10 @@ export async function GET(req: NextRequest) {
 
   const [{ rows: users }, { rows: fileStats }, { rows: threats }, { rows: clean }, { rows: distribution }] = await Promise.all([
     query('SELECT COUNT(*)::int AS total_users FROM users'),
-    query('SELECT COUNT(*)::int AS total_files, COALESCE(SUM(size_bytes),0)::bigint AS total_bytes FROM files'),
-    query('SELECT COUNT(*)::int AS threats_blocked FROM scan_results WHERE is_malicious = true'),
-    query('SELECT COUNT(*)::int AS clean_files FROM scan_results WHERE is_malicious = false'),
-    query('SELECT mime_type, COUNT(*)::int AS count FROM files GROUP BY mime_type ORDER BY count DESC LIMIT 10')
+    query("SELECT COUNT(*)::int AS total_files, COALESCE(SUM(size_bytes),0)::bigint AS total_bytes FROM file_objects WHERE status = 'READY' AND deleted_at IS NULL"),
+    query("SELECT COUNT(*)::int AS threats_blocked FROM file_objects WHERE status = 'QUARANTINED'"),
+    query("SELECT COUNT(*)::int AS clean_files FROM file_objects WHERE status = 'READY' AND deleted_at IS NULL"),
+    query("SELECT mime_type, COUNT(*)::int AS count FROM file_objects WHERE status = 'READY' AND deleted_at IS NULL GROUP BY mime_type ORDER BY count DESC LIMIT 10")
   ]);
 
   return NextResponse.json({

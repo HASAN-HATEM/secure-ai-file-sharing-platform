@@ -30,6 +30,7 @@ export const authOptions: NextAuthOptions = {
 
         const user = await findUserByEmail(email);
         if (!user) return null;
+        if (user.disabled) return null;
 
         const valid = await verifyPassword(password, user.password_hash);
         if (!valid) return null;

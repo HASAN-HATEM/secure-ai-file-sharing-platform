@@ -6,11 +6,11 @@ type LogItem = {
   action: string;
   target_type: string;
   target_id: number;
-  metadata: any;
+  details: any;
   timestamp: string;
   email?: string;
   name?: string;
-  user_id?: number;
+  actor_user_id?: number;
 };
 
 function chipClass(action: string): string {
@@ -67,11 +67,11 @@ export default function SecurityLogsPage() {
                 <span className={chipClass(log.action)}>{log.action?.replace(/_/g, " ").split(" ")[0] || "info"}</span>
               </div>
               <div className="log-meta">
-                {log.target_type} #{log.target_id} · User: {log.email || log.user_id || "unknown"}
+                {log.target_type} #{log.target_id} · User: {log.email || log.actor_user_id || "unknown"}
               </div>
-              {log.metadata && (
+              {log.details && (
                 <pre className="log-pre">
-                  {typeof log.metadata === "string" ? log.metadata : JSON.stringify(log.metadata, null, 2)}
+                  {typeof log.details === "string" ? log.details : JSON.stringify(log.details, null, 2)}
                 </pre>
               )}
               <div className="muted" style={{ textAlign: "right" }}>{new Date(log.timestamp).toLocaleString()}</div>

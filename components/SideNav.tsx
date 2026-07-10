@@ -37,8 +37,7 @@ const sections = [
     links: [
       { href: '/admin', label: 'User Management', icon: '👤' },
       { href: '/analytics', label: 'Analytics', icon: '📊' },
-      { href: '/security', label: 'Security Logs', icon: '🛡' },
-      { href: '/system', label: 'System Settings', icon: '⚙' }
+      { href: '/security', label: 'Security Logs', icon: '🛡' }
     ]
   },
   {

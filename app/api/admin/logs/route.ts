@@ -7,9 +7,9 @@ export async function GET(req: NextRequest) {
   if (!user || user.role !== 'ADMIN') return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
 
   const { rows } = await query(
-    `SELECT l.*, u.email, u.name 
-     FROM audit_logs l 
-     LEFT JOIN users u ON u.id = l.user_id
+    `SELECT l.*, u.email, u.name
+     FROM audit_logs l
+     LEFT JOIN users u ON u.id = l.actor_user_id
      ORDER BY l.timestamp DESC
      LIMIT 100`
   );
