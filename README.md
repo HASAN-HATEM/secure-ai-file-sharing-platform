@@ -2,6 +2,23 @@
 
 End-to-end encrypted file sharing for students with AI malware scanning, classification, and RBAC.
 
+## Overview
+Students and university staff often swap assignments, notes, and research files over channels that offer no encryption and no protection against malicious attachments. This platform encrypts every file in the browser before it leaves the device and runs each upload through an AI service that scans for malware and classifies the content, so files can be shared safely with role-based access control. I built it as my university Final Year Project (FYP).
+
+**Author:** Hasan Dhafer · [LinkedIn](https://www.linkedin.com/in/hasanxrr/) · [GitHub](https://github.com/HASAN-HATEM)
+
+## Demo
+[![Watch the demo](https://img.youtube.com/vi/n0tcdZguZD4/hqdefault.jpg)](https://youtu.be/n0tcdZguZD4)
+
+*Click the thumbnail to watch the full walkthrough on YouTube.*
+
+## Key Features
+- **End-to-end client-side encryption:** AES-256-GCM in the browser, with per-file keys wrapped by a PBKDF2-derived user master key
+- **AI malware scanning and file classification:** a FastAPI microservice scans every upload and classifies text and image files
+- **Role-based access control (RBAC):** separate user and admin roles, with server-side permission checks on every file operation
+- **Presigned Cloudflare R2 uploads with a quarantine pipeline:** the browser uploads straight to a temporary key, and malicious files are quarantined and never written to final storage
+- **Unit-tested:** Vitest suites cover auth/RBAC, the upload pipeline, and download permissions
+
 ## Stack
 - Next.js (App Router) for frontend + API routes
 - PostgreSQL for metadata storage (no file bytes in DB)
